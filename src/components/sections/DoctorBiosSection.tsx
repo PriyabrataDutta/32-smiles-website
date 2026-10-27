@@ -46,6 +46,8 @@ export const DoctorBiosSection: React.FC<DoctorBiosSectionProps> = ({
                   <img
                     src={doctor.image}
                     alt={doctor.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div
@@ -133,6 +135,8 @@ export const DoctorBiosSection: React.FC<DoctorBiosSectionProps> = ({
                 <img
                   src={activeDoctor.image}
                   alt={activeDoctor.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>

@@ -46,6 +46,8 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
       <img
         src={afterImage}
         alt={afterAlt}
+        loading="lazy"
+        decoding="async"
         className="absolute top-0 left-0 w-full h-full object-cover"
         draggable="false"
       />
@@ -59,6 +61,8 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
       <img
         src={beforeImage}
         alt={beforeAlt}
+        loading="lazy"
+        decoding="async"
         className="absolute top-0 left-0 w-full h-full object-cover"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         draggable="false"

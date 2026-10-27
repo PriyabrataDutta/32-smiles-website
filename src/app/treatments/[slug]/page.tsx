@@ -136,6 +136,10 @@ export default async function TreatmentDetailPage({
                   <img
                     src={treatment.heroImage}
                     alt={treatment.name}
+                    loading="eager"
+                    decoding="async"
+                    // @ts-ignore
+                    fetchPriority="high"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>

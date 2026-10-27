@@ -279,6 +279,8 @@ export default async function BranchDetailPage({ params }: BranchPageProps) {
                   <img
                     src={doctor.image}
                     alt={doctor.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </div>

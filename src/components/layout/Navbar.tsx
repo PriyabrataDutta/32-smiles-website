@@ -172,6 +172,7 @@ export const Navbar: React.FC = () => {
               src="/logo.png"
               alt="32 Smiles Multispeciality Dental Clinics"
               fill
+              sizes="(max-width: 640px) 160px, 192px"
               className="object-contain"
               priority
             />

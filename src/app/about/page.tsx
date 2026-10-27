@@ -100,6 +100,8 @@ export default function AboutPage() {
                   <img
                     src={founder?.image || '/logo.png'}
                     alt="Dr. Naveen Indla - Founder & Director of 32 Smiles"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>

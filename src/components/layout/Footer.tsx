@@ -61,6 +61,7 @@ export const Footer: React.FC = () => {
                 src="/logo.png"
                 alt="32 Smiles Multispeciality Dental Clinics"
                 fill
+                sizes="(max-width: 640px) 160px, 176px"
                 className="object-contain brightness-0 invert"
               />
             </Link>
