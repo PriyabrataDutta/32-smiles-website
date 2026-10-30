@@ -2,7 +2,19 @@
 
 import React, { useState, useEffect } from 'react';
 import { CLINIC_BRANCHES, TREATMENTS_LIST } from '@/data/clinicData';
-import { Calendar, Phone, User, MapPin, CheckCircle, Clock, ShieldCheck, Sparkles, MessageSquare } from 'lucide-react';
+import {
+  Calendar,
+  Phone,
+  User,
+  MapPin,
+  CheckCircle,
+  Clock,
+  ShieldCheck,
+  Sparkles,
+  Loader2,
+  AlertCircle,
+} from 'lucide-react';
+import { bookAppointmentAction } from '@/app/actions/bookAppointment';
 
 interface LeadFormSectionProps {
   selectedBranchName?: string;
@@ -34,7 +46,9 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
   });
 
   const [whatsappOptIn, setWhatsappOptIn] = useState(true);
-  const [phoneError, setPhoneError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [serverError, setServerError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [bookingRef, setBookingRef] = useState('');
 
@@ -68,24 +82,50 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.replace(/[^0-9+ ]/g, '');
     setFormData({ ...formData, phone: val });
-    if (val.replace(/\D/g, '').length < 10 && val.length > 0) {
-      setPhoneError('Please enter a valid 10-digit mobile number');
-    } else {
-      setPhoneError('');
+    if (fieldErrors.phone) {
+      setFieldErrors((prev) => {
+        const next = { ...prev };
+        delete next.phone;
+        return next;
+      });
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const digitsOnly = formData.phone.replace(/\D/g, '');
-    if (digitsOnly.length < 10) {
-      setPhoneError('Please enter a valid 10-digit mobile number');
+    setServerError('');
+    setFieldErrors({});
+
+    // Client-side quick check
+    const digits = formData.phone.replace(/\D/g, '');
+    if (digits.length < 10) {
+      setFieldErrors({ phone: 'Please enter a valid 10-digit mobile number' });
       return;
     }
 
-    const ref = `32S-${Math.floor(1000 + Math.random() * 9000)}`;
-    setBookingRef(ref);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const res = await bookAppointmentAction({
+        ...formData,
+        whatsappOptIn,
+      });
+
+      if (res.success && res.bookingRef) {
+        setBookingRef(res.bookingRef);
+        setIsSubmitted(true);
+      } else {
+        if (res.errors) {
+          setFieldErrors(res.errors);
+        }
+        setServerError(res.message || 'Unable to confirm appointment. Please call directly.');
+      }
+    } catch (err) {
+      console.error('Lead submission error:', err);
+      setServerError('Network error. Please call our clinic directly at +91 94827 12345.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const selectedBranchData =
@@ -114,6 +154,13 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
                 </p>
               </div>
 
+              {serverError && (
+                <div className="mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
+                  <span>{serverError}</span>
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Name */}
@@ -130,10 +177,24 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
                         required
                         placeholder="e.g. Ramesh Kumar"
                         value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-[#D2C5B0] text-sm text-[#2B2420] placeholder-[#A89D8B] focus:ring-2 focus:ring-[#D9A93B] focus:border-transparent outline-none transition-all shadow-xs"
+                        onChange={(e) => {
+                          setFormData({ ...formData, fullName: e.target.value });
+                          if (fieldErrors.fullName) {
+                            setFieldErrors((prev) => {
+                              const next = { ...prev };
+                              delete next.fullName;
+                              return next;
+                            });
+                          }
+                        }}
+                        className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white border ${
+                          fieldErrors.fullName ? 'border-rose-500' : 'border-[#D2C5B0]'
+                        } text-sm text-[#2B2420] placeholder-[#A89D8B] focus:ring-2 focus:ring-[#D9A93B] focus:border-transparent outline-none transition-all shadow-xs`}
                       />
                     </div>
+                    {fieldErrors.fullName && (
+                      <p className="text-[11px] text-rose-600 mt-1 font-semibold">{fieldErrors.fullName}</p>
+                    )}
                   </div>
 
                   {/* Phone */}
@@ -152,12 +213,12 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
                         value={formData.phone}
                         onChange={handlePhoneChange}
                         className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white border ${
-                          phoneError ? 'border-rose-500' : 'border-[#D2C5B0]'
+                          fieldErrors.phone ? 'border-rose-500' : 'border-[#D2C5B0]'
                         } text-sm text-[#2B2420] placeholder-[#A89D8B] focus:ring-2 focus:ring-[#D9A93B] focus:border-transparent outline-none transition-all shadow-xs`}
                       />
                     </div>
-                    {phoneError && (
-                      <p className="text-[11px] text-rose-600 mt-1 font-semibold">{phoneError}</p>
+                    {fieldErrors.phone && (
+                      <p className="text-[11px] text-rose-600 mt-1 font-semibold">{fieldErrors.phone}</p>
                     )}
                   </div>
                 </div>
@@ -271,10 +332,20 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
                 {/* Submit CTA */}
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-2xl bg-[#795900] hover:bg-[#573F00] text-white font-bold text-base shadow-lg hover:shadow-xl transition-all tracking-wide cursor-pointer flex items-center justify-center gap-2"
+                  disabled={isSubmitting}
+                  className="w-full py-4 px-6 rounded-2xl bg-[#795900] hover:bg-[#573F00] disabled:opacity-60 text-white font-bold text-base shadow-lg hover:shadow-xl transition-all tracking-wide cursor-pointer flex items-center justify-center gap-2"
                 >
-                  <CheckCircle className="w-5 h-5 text-[#FFDEA0]" />
-                  <span>Confirm Free Appointment Booking</span>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Scheduling Clinical Appointment...</span>
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle className="w-5 h-5 text-[#FFDEA0]" />
+                      <span>Confirm Free Appointment Booking</span>
+                    </>
+                  )}
                 </button>
 
                 {/* Safety Guarantee */}
@@ -298,7 +369,7 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
                 Appointment Request Confirmed!
               </h3>
               <p className="text-sm text-[#4E4636] max-w-md mx-auto">
-                Thank you, <strong className="text-[#2B2420]">{formData.fullName}</strong>. Your reference code is{' '}
+                Thank you, <strong className="text-[#2B2420]">{formData.fullName}</strong>. Your confirmed reference code is{' '}
                 <span className="font-bold text-[#795900] bg-white px-2.5 py-1 rounded-md border border-[#E8DCC8]">
                   {bookingRef}
                 </span>.
@@ -314,7 +385,7 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
               <div className="pt-4 flex flex-wrap justify-center gap-3">
                 <a
                   href={`tel:${selectedBranchData?.phone || '+919482712345'}`}
-                  className="px-5 py-2.5 rounded-full bg-[#795900] text-white font-bold text-xs flex items-center gap-2 shadow"
+                  className="px-5 py-2.5 rounded-full bg-[#795900] text-white font-bold text-xs flex items-center gap-2 shadow-xs"
                 >
                   <Phone className="w-3.5 h-3.5" />
                   Call Clinic Directly
@@ -322,7 +393,7 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
                 <button
                   type="button"
                   onClick={() => setIsSubmitted(false)}
-                  className="px-5 py-2.5 rounded-full bg-white border border-[#D2C5B0] text-[#2B2420] font-bold text-xs hover:bg-[#FDF8EE]"
+                  className="px-5 py-2.5 rounded-full bg-white border border-[#D2C5B0] text-[#2B2420] font-bold text-xs hover:bg-[#FAF4EA]"
                 >
                   Book Another Slot
                 </button>

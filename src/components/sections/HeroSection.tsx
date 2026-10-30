@@ -1,75 +1,231 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Star, ShieldCheck, MapPin, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Calendar, ArrowRight, MapPin, Sparkles, UserCheck } from 'lucide-react';
 
 interface HeroSectionProps {
+  eyebrow?: string;
+  headline?: React.ReactNode;
   subtitle?: string;
-  badge?: string;
   imageSrc?: string;
+  primaryCtaText?: string;
+  primaryCtaLink?: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
 }
 
+const patientAvatars = [
+  {
+    src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&h=96&fit=crop&crop=faces&q=80',
+    alt: 'Satisfied 32 Smiles Patient',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=faces&q=80',
+    alt: 'Smiles Transformation Patient',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=faces&q=80',
+    alt: 'Dental Care Patient',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&crop=faces&q=80',
+    alt: 'Happy Aligner Patient',
+  },
+];
+
 export const HeroSection: React.FC<HeroSectionProps> = ({
-  subtitle = 'Thoughtful dental care for every stage of your smile journey — from preventive checkups to advanced implants and confident smile makeovers.',
-  badge = 'A calmer way to care for your smile',
-  imageSrc = '/hero-consultation.png',
+  eyebrow = 'EXPERT DENTAL CARE FOR A HEALTHIER TOMORROW',
+  headline,
+  subtitle = 'Advanced dental treatments, expert specialists and compassionate care — all under one roof in Bengaluru.',
+  imageSrc = '/32-smiles-hero.png',
+  primaryCtaText = 'Book an Appointment',
+  primaryCtaLink = '/book-appointment',
+  secondaryCtaText = 'Explore Treatments',
+  secondaryCtaLink = '/treatments',
 }) => {
   return (
-    <section className="relative overflow-hidden bg-[#F7F2EA] border-b border-[#E8DCC8]">
-      <div className="absolute -left-32 top-16 h-72 w-72 rounded-full bg-[#D9A93B]/10 blur-3xl pointer-events-none" />
-      <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-[#C6D7CF]/20 blur-3xl pointer-events-none" />
+    <section
+      aria-labelledby="hero-title"
+      className="relative overflow-hidden bg-[#FAF4EA] pt-6 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-20"
+    >
+      {/* Subtle Background Tooth Watermark on Left */}
+      <svg
+        className="pointer-events-none absolute -left-16 sm:-left-8 top-8 h-80 w-80 sm:h-[420px] sm:w-[420px] text-[#D9A93B]/15 select-none"
+        viewBox="0 0 200 240"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M40 70 C35 30, 85 20, 100 45 C115 20, 165 30, 160 70 C156 100, 150 140, 140 210 C135 225, 120 220, 115 195 C110 170, 105 155, 100 155 C95 155, 90 170, 85 195 C80 220, 65 225, 60 210 C50 140, 44 100, 40 70 Z" />
+      </svg>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 lg:py-20">
-        <div className="flex flex-col lg:flex-row items-stretch justify-between gap-10 lg:gap-16">
-          <div className="lg:w-[46%] flex flex-col justify-center space-y-6 text-center lg:text-left z-10">
-            <div className="flex items-center justify-center lg:justify-start gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-[#795900]">
-              <span className="h-px w-8 bg-[#D9A93B]" />
-              <span>{badge}</span>
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1.15fr] lg:gap-12 xl:gap-16">
+          {/* Left Editorial Content */}
+          <div className="relative z-10 flex flex-col text-left">
+            {/* Eyebrow with Target Icon */}
+            <div className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#795900] sm:text-[12.5px]">
+              <svg
+                className="h-3.5 w-3.5 text-[#795900] shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" stroke="currentColor" />
+                <circle cx="12" cy="12" r="3" fill="currentColor" />
+              </svg>
+              <span>{eyebrow}</span>
             </div>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[58px] font-semibold text-[#2B2420] leading-[1.05] tracking-tight">
-              A healthier smile starts with a little more <span className="text-[#9A7121] italic">care.</span>
+
+            {/* Main Headline */}
+            <h1
+              id="hero-title"
+              className="font-serif text-[2.6rem] font-bold leading-[1.06] tracking-tight text-[#2B2420] sm:text-5xl lg:text-[58px] xl:text-[64px]"
+            >
+              {headline ?? (
+                <>
+                  Confident
+                  <br />
+                  Smiles for a
+                  <br />
+                  Brighter You
+                </>
+              )}
             </h1>
-            <p className="text-base sm:text-lg text-[#5C5147] leading-relaxed max-w-xl mx-auto lg:mx-0">{subtitle}</p>
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 text-xs font-semibold text-[#4E4636]">
-              <span className="flex items-center gap-1.5"><Star className="w-4 h-4 fill-amber-400 text-amber-400" /> 4.9 / 5 from 15,200+ patients</span>
-              <span className="h-1 w-1 rounded-full bg-[#D9A93B]" />
-              <span>9 clinics across Bangalore</span>
-            </div>
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <Link href="/book-appointment" className="w-full sm:w-auto bg-[#795900] hover:bg-[#573F00] text-white font-bold text-sm px-7 py-4 rounded-full shadow-md hover:shadow-xl transition-all flex items-center justify-center gap-2 group cursor-pointer">
-                <span>Book a free consultation</span><ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+
+            {/* Supporting Subtext */}
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-[#5C5147] sm:text-lg sm:leading-8">
+              {subtitle}
+            </p>
+
+            {/* CTA Buttons Row */}
+            <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
+              <Link
+                href={primaryCtaLink}
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-[#795900] px-7 py-3.5 sm:py-4 text-sm sm:text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(121,89,0,0.2)] transition-all hover:bg-[#573F00] hover:shadow-[0_12px_28px_rgba(87,63,0,0.28)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A93B]"
+              >
+                <Calendar className="h-4 w-4 shrink-0 text-white" aria-hidden="true" />
+                <span>{primaryCtaText}</span>
+                <ArrowRight
+                  className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
               </Link>
-              <Link href="/branches" className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#795900] hover:text-[#573F00] px-5 py-3 rounded-full bg-white/70 border border-[#D2C5B0] hover:bg-white transition-colors">
-                <MapPin className="w-4 h-4 text-[#D9A93B]" /><span>Find your nearest clinic</span>
+
+              <Link
+                href={secondaryCtaLink}
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full border border-[#2B2420] bg-transparent px-7 py-3.5 sm:py-4 text-sm sm:text-[15px] font-semibold text-[#2B2420] transition-colors hover:bg-[#2B2420]/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A93B]"
+              >
+                <span>{secondaryCtaText}</span>
+                <ArrowRight
+                  className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
               </Link>
             </div>
-            <div className="pt-5 border-t border-[#E8DCC8] grid grid-cols-2 gap-4 text-xs text-[#4E4636] font-medium max-w-md mx-auto lg:mx-0">
-              <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" /><span>Gentle, pain-aware treatment</span></div>
-              <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" /><span>Modern, hygienic clinics</span></div>
+
+            {/* Trust Indicators Row */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 pt-2 text-xs sm:text-[13px] font-semibold text-[#4E4636]">
+              <div className="flex items-center gap-2">
+                <UserCheck className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
+                <span>Experienced Specialists</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
+                <span>Advanced Technology</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
+                <span>9+ Clinics in Bengaluru</span>
+              </div>
             </div>
           </div>
 
-          <div className="lg:w-[54%] relative w-full max-w-2xl">
-            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-8 border-white bg-white aspect-[4/3] group">
+          {/* Right Hero Visual Column */}
+          <div className="relative mx-auto w-full max-w-2xl lg:max-w-none">
+            <div className="relative aspect-[16/10] sm:aspect-[16/10] lg:aspect-[15/10] w-full overflow-hidden rounded-3xl lg:rounded-[2.5rem] bg-[#F7F0E4] shadow-[0_16px_45px_rgba(43,36,32,0.12)]">
+              {/* Soft Left Blend Gradient on Desktop */}
+              <div
+                className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-28 bg-gradient-to-r from-[#FAF4EA] via-[#FAF4EA]/50 to-transparent lg:block"
+                aria-hidden="true"
+              />
+
               <Image
                 src={imageSrc}
-                alt="A relaxed dental consultation at 32 Smiles"
+                alt="Friendly Indian female dentist treating a smiling, relaxed female patient in a modern dental chair at 32 Smiles clinic"
                 fill
                 priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 54vw, 672px"
-                quality={85}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 1023px) 100vw, 55vw"
+                quality={90}
+                className="object-cover object-[70%_center]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2B2420]/20 via-transparent to-transparent pointer-events-none" />
-            </div>
-            <div className="absolute -bottom-5 -left-3 sm:-left-6 bg-white p-4 rounded-2xl shadow-xl border border-[#E8DCC8] flex items-center gap-3 animate-fade-in z-20">
-              <div className="w-12 h-12 rounded-xl bg-[#FAF4EA] flex items-center justify-center text-[#795900] border border-[#E8DCC8]"><span className="font-serif text-2xl font-bold">20+</span></div>
-              <div><p className="text-[10px] uppercase font-bold tracking-wider text-[#795900]">Established</p><p className="text-xs sm:text-sm font-bold text-[#2B2420]">in Bangalore since 2005</p></div>
-            </div>
-            <div className="hidden sm:flex absolute -top-4 -right-2 bg-white px-4 py-2 rounded-full shadow-lg border border-[#E8DCC8] items-center gap-2 text-xs font-semibold text-[#2B2420] z-20">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /><span>Open today · 10 AM – 9 PM</span>
+
+              {/* Hand-Drawn Script Badge: Because Every Smile Matters */}
+              <div
+                className="pointer-events-none absolute top-4 right-4 sm:top-6 sm:right-6 z-20 select-none text-[#2B2420]"
+                aria-hidden="true"
+              >
+                <div className="text-right font-serif italic drop-shadow-xs rotate-[-3deg]">
+                  <p className="text-sm sm:text-base lg:text-lg leading-tight font-normal text-[#4E4636]">
+                    Because
+                  </p>
+                  <p className="text-xl sm:text-2xl lg:text-[26px] font-bold leading-tight text-[#2B2420]">
+                    Every Smile
+                  </p>
+                  <p className="text-sm sm:text-base lg:text-lg leading-tight font-normal text-[#4E4636]">
+                    Matters
+                  </p>
+                </div>
+                {/* Curved smile underline */}
+                <svg
+                  className="ml-auto mt-0.5 h-4 w-20 sm:w-24 text-[#2B2420]"
+                  viewBox="0 0 100 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                >
+                  <path d="M 8 6 Q 50 24 92 6" />
+                  <path d="M 7 11 C 7.5 8, 10 6, 12 5" />
+                  <path d="M 93 11 C 92.5 8, 90 6, 88 5" />
+                </svg>
+              </div>
+
+              {/* Floating Patient Trust Pill at Bottom */}
+              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 z-20 flex items-center gap-3 rounded-2xl border border-[#E8DCC8] bg-white/95 px-3.5 py-2.5 shadow-xl backdrop-blur-md sm:px-4 sm:py-3">
+                {/* Overlapping Avatars */}
+                <div className="flex -space-x-2 overflow-hidden">
+                  {patientAvatars.map((avatar, idx) => (
+                    <div
+                      key={idx}
+                      className="relative h-7 w-7 sm:h-8 sm:w-8 rounded-full border-2 border-white overflow-hidden bg-[#FAF4EA]"
+                    >
+                      <Image
+                        src={avatar.src}
+                        alt={avatar.alt}
+                        fill
+                        sizes="32px"
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Trust Label */}
+                <div className="text-left">
+                  <p className="text-[10.5px] font-medium leading-none text-[#6E6458]">
+                    Trusted by
+                  </p>
+                  <p className="mt-1 text-xs sm:text-sm font-bold leading-none text-[#2B2420]">
+                    15,000+ Patients
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
