@@ -1,8 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { PricingTier } from '@/data/treatmentsData';
-import { CreditCard, CheckCircle2, Sparkles, Shield, ArrowRight } from 'lucide-react';
-import { EmiCalculatorCard } from '@/components/common/EmiCalculatorCard';
+import { CheckCircle2, Sparkles, Shield, ArrowRight, Award } from 'lucide-react';
 
 interface TreatmentPricingTiersProps {
   tiers: PricingTier[];
@@ -14,56 +13,53 @@ export const TreatmentPricingTiers: React.FC<TreatmentPricingTiersProps> = ({
   treatmentName,
 }) => {
   return (
-    <section id="pricing" className="scroll-mt-28 space-y-10">
+    <section id="pricing" className="scroll-mt-24 space-y-6">
       <div>
         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#795900]">
-          <CreditCard className="w-4 h-4 text-[#D9A93B]" />
+          <Award className="w-4 h-4 text-[#D9A93B]" />
           <span>Transparent Packages</span>
         </div>
-        <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2B2420] mt-2">
-          Implant Packages & 0% EMI Plans
+        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B2420] mt-1.5">
+          Implant Packages & Pricing
         </h2>
-        <p className="text-sm sm:text-base text-[#4E4636] mt-2 max-w-3xl leading-relaxed">
-          Clear, all-inclusive pricing with zero hidden charges. Every package covers your titanium fixture, custom abutment, permanent monolithic zirconia crown, and clinical warranty card.
+        <p className="text-xs sm:text-sm text-[#4E4636] mt-1.5 max-w-2xl leading-relaxed">
+          All-inclusive pricing with zero hidden fees. Every package covers your titanium fixture, custom CAD/CAM abutment, monolithic zirconia crown, and clinical warranty card.
         </p>
       </div>
 
-      {/* Pricing Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Pricing Cards Grid - Compact & Beautiful */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {tiers.map((tier, index) => {
           return (
             <div
               key={index}
-              className={`rounded-3xl border p-6 sm:p-7 flex flex-col justify-between transition-all ${
+              className={`rounded-2xl border p-5 flex flex-col justify-between transition-all ${
                 tier.recommended
-                  ? 'bg-white border-[#D9A93B] shadow-xl ring-2 ring-[#D9A93B]/40 relative'
-                  : 'bg-white border-[#E8DCC8] shadow-xs hover:shadow-md'
+                  ? 'bg-white border-[#D9A93B] shadow-lg ring-2 ring-[#D9A93B]/30 relative'
+                  : 'bg-white border-[#E8DCC8] shadow-2xs hover:shadow-sm'
               }`}
             >
               {tier.recommended && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#795900] text-white px-3.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-[#FFDEA0]" />
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#795900] text-white px-3 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-xs flex items-center gap-1">
+                  <Sparkles className="w-2.5 h-2.5 text-[#FFDEA0]" />
                   <span>Most Popular Choice</span>
                 </div>
               )}
 
-              <div className="space-y-4">
+              <div className="space-y-3.5">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#2B2420]">
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-[#2B2420]">
                     {tier.title}
                   </h3>
-                  <div className="mt-3 flex items-baseline gap-2">
-                    <span className="font-serif text-3xl font-bold text-[#795900]">
+                  <div className="mt-2 flex items-baseline gap-1.5">
+                    <span className="font-serif text-2xl sm:text-3xl font-bold text-[#795900]">
                       {tier.price}
                     </span>
-                    <span className="text-xs text-[#5C5143]">/ tooth</span>
-                  </div>
-                  <div className="text-xs font-bold text-emerald-700 mt-1">
-                    0% EMI: {tier.emi}
+                    <span className="text-[11px] text-[#5C5143]">/ tooth complete</span>
                   </div>
                 </div>
 
-                <ul className="space-y-2.5 pt-4 border-t border-[#FAF4EA]">
+                <ul className="space-y-2 pt-3 border-t border-[#FAF4EA]">
                   {tier.includes.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-xs text-[#4E4636]">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
@@ -73,12 +69,12 @@ export const TreatmentPricingTiers: React.FC<TreatmentPricingTiersProps> = ({
                 </ul>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#FAF4EA]">
+              <div className="mt-5 pt-3.5 border-t border-[#FAF4EA]">
                 <Link
                   href={`/book-appointment?package=${encodeURIComponent(tier.title)}&treatment=${encodeURIComponent(treatmentName)}`}
-                  className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+                  className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                     tier.recommended
-                      ? 'bg-[#795900] hover:bg-[#573F00] text-white shadow-sm'
+                      ? 'bg-[#795900] hover:bg-[#573F00] text-white shadow-xs'
                       : 'bg-[#FAF4EA] hover:bg-white text-[#795900] border border-[#D2C5B0]'
                   }`}
                 >
@@ -91,20 +87,15 @@ export const TreatmentPricingTiers: React.FC<TreatmentPricingTiersProps> = ({
         })}
       </div>
 
-      {/* Interactive 0% EMI Calculator Widget */}
-      <div className="bg-[#FAF4EA] rounded-3xl border border-[#E8DCC8] p-6 sm:p-8 space-y-6">
-        <div className="text-center max-w-xl mx-auto space-y-2">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-[#795900]">
-            No-Cost Monthly Installments
-          </span>
-          <h3 className="font-serif text-2xl font-bold text-[#2B2420]">
-            Calculate Your Monthly EMI
-          </h3>
-          <p className="text-xs sm:text-sm text-[#5C5143]">
-            Instant paperless approvals via Bajaj Finserv, HDFC Bank, ICICI Bank, and Pine Labs at all 9 clinics.
-          </p>
+      {/* Trust reassurance banner */}
+      <div className="p-4 rounded-2xl bg-white border border-[#E8DCC8] shadow-2xs flex items-center justify-between flex-wrap gap-3">
+        <div className="flex items-center gap-2.5 text-xs text-[#4E4636]">
+          <Shield className="w-4 h-4 text-emerald-600 shrink-0" />
+          <span>Includes complete preoperative 3D digital diagnosis, sterile surgical setup, and follow-up reviews.</span>
         </div>
-        <EmiCalculatorCard />
+        <span className="text-[11px] font-bold text-[#795900] bg-[#FAF4EA] px-3 py-1 rounded-full border border-[#E8DCC8]">
+          Fixed Transparent Rates
+        </span>
       </div>
     </section>
   );

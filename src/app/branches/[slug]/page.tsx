@@ -6,7 +6,6 @@ import { CheckCircle2, ShieldCheck, Stethoscope, ChevronRight, Star } from 'luci
 import { ALL_BRANCHES_DATA, getBranchBySlug } from '@/data/branchesData';
 import { TESTIMONIALS } from '@/data/clinicData';
 import SectionBadge from '@/components/common/SectionBadge';
-import EmiCalculatorCard from '@/components/common/EmiCalculatorCard';
 import { LeadFormSection } from '@/components/sections/LeadFormSection';
 import { BranchHero } from '@/components/branches/BranchHero';
 import { BranchDoctorRoster } from '@/components/branches/BranchDoctorRoster';
@@ -135,39 +134,6 @@ export default async function BranchDetailPage({ params }: BranchPageProps) {
                 </div>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* Section 4: Interactive EMI Financing */}
-        <section className="bg-gradient-to-br from-[#FAF4EA] to-[#F4E9D8] rounded-3xl p-8 border border-[#D9A93B]/30 shadow-md">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-5">
-              <SectionBadge>Flexible Dental Financing</SectionBadge>
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#2B2420] mt-2">
-                0% Interest EMI Available at {branch.shortName}
-              </h2>
-              <p className="text-sm text-[#2B2420]/80 mt-3 leading-relaxed">
-                Don&apos;t postpone needed dental treatments. We offer paperless, instant EMI approvals through Bajaj
-                Finserv, HDFC, ICICI, and major credit cards with zero down-payment options.
-              </p>
-              <ul className="mt-4 space-y-2 text-xs md:text-sm text-[#2B2420]/80">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#795900]" />
-                  <span>Instant digital approval within 5 minutes</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#795900]" />
-                  <span>Flexible tenures: 3, 6, 9, 12, or 24 months</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#795900]" />
-                  <span>Zero hidden processing fees</span>
-                </li>
-              </ul>
-            </div>
-            <div className="lg:col-span-7">
-              <EmiCalculatorCard />
-            </div>
           </div>
         </section>
 

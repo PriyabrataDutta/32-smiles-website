@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { BranchLocatorSection } from '@/components/sections/BranchLocatorSection';
 import { LeadFormSection } from '@/components/sections/LeadFormSection';
-import { EmiCalculatorCard } from '@/components/common/EmiCalculatorCard';
 import { FaqAccordionIsland } from '@/components/sections/FaqAccordionIsland';
 import { DETAILED_TREATMENTS } from '@/data/treatmentsData';
 import { TreatmentHero } from '@/components/treatments/TreatmentHero';
@@ -74,13 +74,13 @@ export default async function TreatmentDetailPage({
         { id: 'recovery', label: 'Recovery Timeline' },
         { id: 'comparison', label: 'Implants vs Bridges' },
         { id: 'doctor', label: 'Operating Doctor' },
-        { id: 'pricing', label: 'Packages & EMI' },
+        { id: 'pricing', label: 'Pricing & Packages' },
         { id: 'faqs', label: 'Clinical FAQs' },
       ]
     : [
         { id: 'overview', label: 'Overview & Indications' },
         { id: 'procedure', label: 'Procedure Workflow' },
-        { id: 'pricing', label: '0% EMI Plans' },
+        { id: 'pricing', label: 'Pricing & Fees' },
         { id: 'faqs', label: 'Clinical FAQs' },
       ];
 
@@ -95,12 +95,12 @@ export default async function TreatmentDetailPage({
         {/* Sticky In-Page Navigation (Table of Contents) */}
         <TreatmentNavAnchor items={anchorItems} />
 
-        {/* Two-Column Clinical Portal Layout */}
-        <section className="py-12 lg:py-16 bg-[#FAF4EA] border-b border-[#E8DCC8]">
+        {/* Two-Column Clinical Portal Layout - Compact & Beautiful */}
+        <section className="py-8 lg:py-12 bg-[#FAF4EA] border-b border-[#E8DCC8]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
               {/* Left 8 Columns: Comprehensive Clinical Editorial */}
-              <div className="lg:col-span-8 space-y-16">
+              <div className="lg:col-span-8 space-y-10 lg:space-y-12">
                 {/* 1. Clinical Overview, Symptoms, Candidacy & Benefits */}
                 <TreatmentOverviewSection treatment={treatment} />
 
@@ -109,7 +109,7 @@ export default async function TreatmentDetailPage({
                   <TreatmentAnatomyBreakdown anatomyParts={treatment.anatomyParts} />
                 )}
 
-                {/* 3. 4-Stage 3D Guided Surgical Procedure */}
+                {/* 3. 4-Stage 3D Guided Surgical Procedure with Images */}
                 <TreatmentProcedureSection treatment={treatment} />
 
                 {/* 4. Genuine Implant Brands & Systems (Flagship) */}
@@ -135,37 +135,47 @@ export default async function TreatmentDetailPage({
                   />
                 )}
 
-                {/* 8. Pricing Packages & 0% EMI Calculator */}
+                {/* 8. Pricing Packages */}
                 {treatment.pricingTiers ? (
                   <TreatmentPricingTiers
                     tiers={treatment.pricingTiers}
                     treatmentName={treatment.name}
                   />
                 ) : (
-                  <section id="pricing" className="scroll-mt-28 space-y-6">
-                    <div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#795900]">
-                        Flexible Financing
-                      </span>
-                      <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B2420] mt-1">
-                        0% Interest EMI Plans for {treatment.name}
-                      </h2>
+                  <section id="pricing" className="scroll-mt-24 space-y-4">
+                    <div className="p-5 rounded-2xl bg-white border border-[#E8DCC8] shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-4">
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#795900]">
+                          Treatment Pricing
+                        </span>
+                        <h2 className="font-serif text-lg sm:text-xl font-bold text-[#2B2420] mt-0.5">
+                          Estimated Cost: {treatment.startingPrice}
+                        </h2>
+                        <p className="text-xs text-[#5C5143] mt-0.5">
+                          Exact quotes are determined following your initial digital examination and 3D diagnostics.
+                        </p>
+                      </div>
+                      <Link
+                        href={`/book-appointment?treatment=${encodeURIComponent(treatment.name)}`}
+                        className="px-5 py-2.5 rounded-xl bg-[#795900] hover:bg-[#573F00] text-white font-bold text-xs shrink-0 shadow-xs transition-colors"
+                      >
+                        Book Consultation
+                      </Link>
                     </div>
-                    <EmiCalculatorCard />
                   </section>
                 )}
 
                 {/* 9. Comprehensive Clinical FAQs */}
-                <section id="faqs" className="scroll-mt-28 space-y-6">
+                <section id="faqs" className="scroll-mt-24 space-y-4">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#795900]">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#795900]">
                       Patient Clarity & FAQs
                     </span>
                     <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B2420] mt-1">
                       Frequently Asked Questions About {treatment.name}
                     </h2>
-                    <p className="text-sm text-[#4E4636] mt-2">
-                      Clear clinical answers regarding pain management, safety, implant brands, longevity, and food restrictions.
+                    <p className="text-xs sm:text-sm text-[#4E4636] mt-1">
+                      Clear clinical answers regarding pain management, safety, implant systems, durability, and recovery.
                     </p>
                   </div>
                   <FaqAccordionIsland items={treatment.faqs} />

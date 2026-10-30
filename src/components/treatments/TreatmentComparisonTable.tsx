@@ -11,41 +11,40 @@ interface TreatmentComparisonTableProps {
 
 export const TreatmentComparisonTable: React.FC<TreatmentComparisonTableProps> = ({ data }) => {
   return (
-    <section id="comparison" className="scroll-mt-28 space-y-6">
+    <section id="comparison" className="scroll-mt-24 space-y-4">
       <div>
-        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#795900]">
-          <Scale className="w-4 h-4 text-[#D9A93B]" />
+        <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#795900]">
+          <Scale className="w-3.5 h-3.5 text-[#D9A93B]" />
           <span>Clinical Decision Matrix</span>
         </div>
-        <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2B2420] mt-2">
+        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B2420] mt-1.5">
           Dental Implants vs Bridges vs Dentures
         </h2>
-        <p className="text-sm sm:text-base text-[#4E4636] mt-2 max-w-3xl leading-relaxed">
-          Before deciding on tooth replacement, evaluate how each option impacts your adjacent teeth, long-term bone health, chewing power, and 20-year overall cost.
+        <p className="text-xs sm:text-sm text-[#4E4636] mt-1 max-w-2xl leading-relaxed">
+          Evaluate how each option impacts adjacent teeth, long-term bone volume, bite power, and 20-year durability.
         </p>
       </div>
 
-      <div className="overflow-x-auto rounded-3xl border border-[#E8DCC8] bg-white shadow-md">
-        <table className="w-full text-left border-collapse min-w-[640px]">
+      <div className="overflow-x-auto rounded-2xl border border-[#E8DCC8] bg-white shadow-xs">
+        <table className="w-full text-left border-collapse min-w-[600px]">
           <thead>
             <tr className="border-b border-[#E8DCC8] bg-[#FAF4EA]">
-              <th className="py-4 px-5 text-xs font-bold text-[#5C5143] uppercase tracking-wider w-1/4">
+              <th className="py-3 px-4 text-[11px] font-bold text-[#5C5143] uppercase tracking-wider w-1/4">
                 Clinical Feature
               </th>
               {/* Highlight Dental Implants */}
-              <th className="py-4 px-5 text-xs font-bold uppercase tracking-wider w-1/3 bg-[#795900]/10 text-[#795900] border-x border-[#E8DCC8] relative">
-                <div className="flex items-center gap-1.5">
-                  <Sparkles className="w-4 h-4 text-[#795900]" />
+              <th className="py-3 px-4 text-[11px] font-bold uppercase tracking-wider w-1/3 bg-[#795900]/10 text-[#795900] border-x border-[#E8DCC8]">
+                <div className="flex items-center justify-between">
                   <span>{data.headings[0]}</span>
+                  <span className="text-[9px] font-bold text-white bg-[#795900] px-2 py-0.5 rounded-full">
+                    Gold Standard
+                  </span>
                 </div>
-                <span className="inline-block mt-1 text-[10px] font-bold text-white bg-[#795900] px-2 py-0.5 rounded-full">
-                  Gold Standard
-                </span>
               </th>
-              <th className="py-4 px-5 text-xs font-bold text-[#2B2420] uppercase tracking-wider w-1/4">
+              <th className="py-3 px-4 text-[11px] font-bold text-[#2B2420] uppercase tracking-wider w-1/4">
                 {data.headings[1]}
               </th>
-              <th className="py-4 px-5 text-xs font-bold text-[#2B2420] uppercase tracking-wider w-1/4">
+              <th className="py-3 px-4 text-[11px] font-bold text-[#2B2420] uppercase tracking-wider w-1/4">
                 {data.headings[2]}
               </th>
             </tr>
@@ -57,32 +56,32 @@ export const TreatmentComparisonTable: React.FC<TreatmentComparisonTableProps> =
                 className={i % 2 === 0 ? 'bg-white hover:bg-[#FAF4EA]/40' : 'bg-[#FAF4EA]/20 hover:bg-[#FAF4EA]/60'}
               >
                 {/* Feature Name */}
-                <td className="py-4 px-5 font-bold text-[#2B2420] align-top">
+                <td className="py-3 px-4 font-bold text-[#2B2420] align-top text-xs">
                   {row.aspect}
                 </td>
 
                 {/* Primary: Dental Implant */}
-                <td className="py-4 px-5 bg-[#795900]/5 border-x border-[#E8DCC8] align-top">
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span className="font-semibold text-[#2B2420] leading-relaxed">
+                <td className="py-3 px-4 bg-[#795900]/5 border-x border-[#E8DCC8] align-top">
+                  <div className="flex items-start gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="font-semibold text-[#2B2420] leading-snug">
                       {row.primaryTreatment}
                     </span>
                   </div>
                 </td>
 
                 {/* Alternative 1: Dental Bridge */}
-                <td className="py-4 px-5 align-top text-[#5C5143] leading-relaxed">
-                  <div className="flex items-start gap-2">
-                    <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                <td className="py-3 px-4 align-top text-[#5C5143] leading-snug">
+                  <div className="flex items-start gap-1.5">
+                    <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
                     <span>{row.alternativeOne}</span>
                   </div>
                 </td>
 
                 {/* Alternative 2: Removable Denture */}
-                <td className="py-4 px-5 align-top text-[#5C5143] leading-relaxed">
-                  <div className="flex items-start gap-2">
-                    <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                <td className="py-3 px-4 align-top text-[#5C5143] leading-snug">
+                  <div className="flex items-start gap-1.5">
+                    <XCircle className="w-3.5 h-3.5 text-red-500 shrink-0 mt-0.5" />
                     <span>{row.alternativeTwo}</span>
                   </div>
                 </td>
@@ -92,16 +91,15 @@ export const TreatmentComparisonTable: React.FC<TreatmentComparisonTableProps> =
         </table>
       </div>
 
-      {/* Summary Note */}
-      <div className="p-4 rounded-2xl bg-[#FAF4EA] border border-[#E8DCC8] text-xs text-[#5C5143] flex items-center justify-between flex-wrap gap-2">
+      <div className="p-3 rounded-xl bg-[#FAF4EA] border border-[#E8DCC8] text-xs text-[#5C5143] flex items-center justify-between flex-wrap gap-2">
         <span>
-          💡 <strong>Key takeaway:</strong> While bridges or dentures appear cheaper upfront, frequent replacements and damage to natural teeth make dental implants the most economical lifetime choice.
+          💡 <strong>Key Clinical Takeaway:</strong> Bridges damage 2 adjacent teeth, while dentures accelerate bone shrinkage. Dental implants are the only restoration that protects your natural teeth and jawbone.
         </span>
         <a
           href="#pricing"
-          className="text-[#795900] font-bold hover:underline shrink-0"
+          className="text-[#795900] font-bold hover:underline shrink-0 text-xs"
         >
-          View 0% EMI Schemes →
+          View Packages & Rates →
         </a>
       </div>
     </section>

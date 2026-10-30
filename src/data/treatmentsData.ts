@@ -190,7 +190,7 @@ export const DETAILED_TREATMENTS: Record<string, TreatmentDetail> = {
     category: 'Implantology',
     duration: '20 - 30 mins per implant',
     recovery: '24 - 48 hours (Fast Recovery)',
-    startingPrice: '₹24,999 (0% EMI Available)',
+    startingPrice: '₹24,999',
     heroImage: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1200&q=80',
     overview: 'Dental implants are medical-grade titanium posts surgically anchored into the jawbone, functioning as permanent artificial roots for crowns, bridges, or full dentures. Through a biological phenomenon called osseointegration, the titanium fuses directly with your living jawbone, completely halting bone resorption and restoring full bite force without touching adjacent teeth.',
     clinicalSummary: {

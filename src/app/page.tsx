@@ -10,7 +10,6 @@ import { BranchLocatorSection } from '@/components/sections/BranchLocatorSection
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { FaqSection } from '@/components/sections/FaqSection';
 import { LeadFormSection } from '@/components/sections/LeadFormSection';
-import { EmiCalculatorCard } from '@/components/common/EmiCalculatorCard';
 import { BeforeAfterSlider } from '@/components/common/BeforeAfterSlider';
 import { SectionBadge } from '@/components/common/SectionBadge';
 import { BEFORE_AFTER_CASES } from '@/data/clinicData';
@@ -78,13 +77,6 @@ export default function HomePage() {
 
         {/* Specialists & Lead Doctors */}
         <DoctorBiosSection />
-
-        {/* Instant 0% EMI Calculator */}
-        <section className="py-20 bg-[#FAF4EA] border-b border-[#E8DCC8]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6">
-            <EmiCalculatorCard />
-          </div>
-        </section>
 
         {/* 9 Bangalore Branches Locator */}
         <BranchLocatorSection />

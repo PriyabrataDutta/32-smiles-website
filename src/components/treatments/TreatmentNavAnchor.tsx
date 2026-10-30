@@ -65,10 +65,10 @@ export const TreatmentNavAnchor: React.FC<TreatmentNavAnchorProps> = ({ items })
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav
-          className="flex items-center gap-2 overflow-x-auto py-3 no-scrollbar scroll-smooth"
+          className="flex items-center gap-1.5 overflow-x-auto py-2.5 no-scrollbar scroll-smooth"
           aria-label="Table of Contents"
         >
-          <span className="hidden lg:inline-flex text-[11px] font-bold uppercase tracking-wider text-[#795900] mr-2 shrink-0">
+          <span className="hidden lg:inline-flex text-[10px] font-bold uppercase tracking-wider text-[#795900] mr-1.5 shrink-0">
             Guide Sections:
           </span>
 
@@ -79,10 +79,10 @@ export const TreatmentNavAnchor: React.FC<TreatmentNavAnchorProps> = ({ items })
                 key={item.id}
                 href={`#${item.id}`}
                 onClick={(e) => scrollToSection(e, item.id)}
-                className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold transition-all shrink-0 ${
+                className={`whitespace-nowrap px-3.5 py-1 rounded-full text-xs font-semibold transition-all shrink-0 ${
                   isActive
-                    ? 'bg-[#795900] text-white shadow-xs'
-                    : 'bg-white/80 text-[#5C5143] hover:text-[#2B2420] hover:bg-white border border-[#E8DCC8]'
+                    ? 'bg-[#795900] text-white shadow-2xs'
+                    : 'bg-white/90 text-[#5C5143] hover:text-[#2B2420] hover:bg-white border border-[#E8DCC8]'
                 }`}
               >
                 {item.label}
@@ -94,3 +94,4 @@ export const TreatmentNavAnchor: React.FC<TreatmentNavAnchorProps> = ({ items })
     </div>
   );
 };
+

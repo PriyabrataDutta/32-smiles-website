@@ -5,7 +5,6 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { StickyBottomNav } from '@/components/layout/StickyBottomNav';
 import { SectionBadge } from '@/components/common/SectionBadge';
-import { EmiCalculatorCard } from '@/components/common/EmiCalculatorCard';
 import { LeadFormSection } from '@/components/sections/LeadFormSection';
 import {
   CreditCard,
@@ -60,19 +59,6 @@ export default function PricingEmiPage() {
                 World-class dental care should be accessible to everyone. We offer zero hidden charges, printed estimates, and seamless 0% interest EMI options.
               </p>
             </div>
-          </div>
-        </section>
-
-        {/* EMI Calculator Container */}
-        <section className="py-20 bg-white border-b border-[#E8DCC8]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6">
-            <div className="text-center mb-10 space-y-2">
-              <SectionBadge text="Interactive EMI Estimator" />
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B2420]">
-                Calculate Your Monthly Installment
-              </h2>
-            </div>
-            <EmiCalculatorCard />
           </div>
         </section>
 
