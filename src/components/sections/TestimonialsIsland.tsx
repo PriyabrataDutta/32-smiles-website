@@ -64,7 +64,7 @@ export const TestimonialsIsland: React.FC<TestimonialsIslandProps> = () => {
             <h3 className="font-serif text-2xl font-bold text-[#2B2420] mb-2">
               Share Your 32 Smiles Experience
             </h3>
-            <p className="text-xs text-[#807663] mb-6">
+            <p className="text-xs text-[#5C5143] mb-6">
               Your feedback helps other patients choose the right dental specialist with confidence.
             </p>
 

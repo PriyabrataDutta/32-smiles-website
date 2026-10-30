@@ -165,14 +165,16 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Name */}
                   <div>
-                    <label className="block text-xs font-bold text-[#2B2420] mb-1.5">
+                    <label htmlFor="lead-full-name" className="block text-xs font-bold text-[#2B2420] mb-1.5">
                       Full Name *
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#807663]">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#5C5143]">
                         <User className="w-4 h-4" />
                       </div>
                       <input
+                        id="lead-full-name"
+                        aria-label="Full Name"
                         type="text"
                         required
                         placeholder="e.g. Ramesh Kumar"
@@ -199,14 +201,16 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
 
                   {/* Phone */}
                   <div>
-                    <label className="block text-xs font-bold text-[#2B2420] mb-1.5">
+                    <label htmlFor="lead-phone" className="block text-xs font-bold text-[#2B2420] mb-1.5">
                       Mobile Number *
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#807663]">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#5C5143]">
                         <Phone className="w-4 h-4" />
                       </div>
                       <input
+                        id="lead-phone"
+                        aria-label="Mobile Number"
                         type="tel"
                         required
                         placeholder="+91 98765 43210"
@@ -226,14 +230,16 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Branch */}
                   <div>
-                    <label className="block text-xs font-bold text-[#2B2420] mb-1.5">
+                    <label htmlFor="lead-branch" className="block text-xs font-bold text-[#2B2420] mb-1.5">
                       Preferred Bangalore Clinic *
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#807663]">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#5C5143]">
                         <MapPin className="w-4 h-4" />
                       </div>
                       <select
+                        id="lead-branch"
+                        aria-label="Preferred Bangalore Clinic"
                         value={formData.branch}
                         onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
                         className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-[#D2C5B0] text-sm text-[#2B2420] focus:ring-2 focus:ring-[#D9A93B] focus:border-transparent outline-none transition-all shadow-xs appearance-none cursor-pointer"
@@ -249,14 +255,16 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
 
                   {/* Treatment */}
                   <div>
-                    <label className="block text-xs font-bold text-[#2B2420] mb-1.5">
+                    <label htmlFor="lead-treatment" className="block text-xs font-bold text-[#2B2420] mb-1.5">
                       Dental Treatment Needed *
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#807663]">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#5C5143]">
                         <Sparkles className="w-4 h-4" />
                       </div>
                       <select
+                        id="lead-treatment"
+                        aria-label="Dental Treatment Needed"
                         value={formData.treatment}
                         onChange={(e) => setFormData({ ...formData, treatment: e.target.value })}
                         className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-[#D2C5B0] text-sm text-[#2B2420] focus:ring-2 focus:ring-[#D9A93B] focus:border-transparent outline-none transition-all shadow-xs appearance-none cursor-pointer"
@@ -275,14 +283,16 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Date */}
                   <div>
-                    <label className="block text-xs font-bold text-[#2B2420] mb-1.5">
+                    <label htmlFor="lead-date" className="block text-xs font-bold text-[#2B2420] mb-1.5">
                       Preferred Date *
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#807663]">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#5C5143]">
                         <Calendar className="w-4 h-4" />
                       </div>
                       <input
+                        id="lead-date"
+                        aria-label="Preferred Appointment Date"
                         type="date"
                         required
                         value={formData.preferredDate}
@@ -294,14 +304,16 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
 
                   {/* Time Slot */}
                   <div>
-                    <label className="block text-xs font-bold text-[#2B2420] mb-1.5">
+                    <label htmlFor="lead-time" className="block text-xs font-bold text-[#2B2420] mb-1.5">
                       Preferred Time Slot *
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#807663]">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#5C5143]">
                         <Clock className="w-4 h-4" />
                       </div>
                       <select
+                        id="lead-time"
+                        aria-label="Preferred Time Slot"
                         value={formData.preferredTime}
                         onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
                         className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-[#D2C5B0] text-sm text-[#2B2420] focus:ring-2 focus:ring-[#D9A93B] focus:border-transparent outline-none transition-all shadow-xs appearance-none cursor-pointer"
@@ -349,7 +361,7 @@ export const LeadFormSection: React.FC<LeadFormSectionProps> = ({
                 </button>
 
                 {/* Safety Guarantee */}
-                <div className="flex items-center justify-center gap-4 text-xs text-[#807663] pt-2 text-center">
+                <div className="flex items-center justify-center gap-4 text-xs text-[#5C5143] pt-2 text-center">
                   <span className="flex items-center gap-1">
                     <ShieldCheck className="w-4 h-4 text-emerald-600" />
                     Zero Spam Guarantee

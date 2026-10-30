@@ -75,7 +75,7 @@ export const DoctorCardActions: React.FC<DoctorCardActionsProps> = ({
                 <p className="text-xs font-bold text-[#795900] uppercase tracking-wider">
                   {doctor.specialty}
                 </p>
-                <p className="text-xs text-[#807663]">{doctor.qualifications}</p>
+                <p className="text-xs text-[#5C5143]">{doctor.qualifications}</p>
               </div>
             </div>
 

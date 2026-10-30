@@ -50,9 +50,10 @@ export const BranchLocatorSection: React.FC<BranchLocatorSectionProps> = ({
           <div className="flex items-center gap-3">
             {/* Search filter */}
             <div className="relative w-full sm:w-64">
-              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#807663]" />
+              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#5C5143]" />
               <input
                 type="text"
+                aria-label="Search clinic branch by area or neighborhood"
                 placeholder="Search area (e.g. Indiranagar, Whitefield)"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -64,6 +65,7 @@ export const BranchLocatorSection: React.FC<BranchLocatorSectionProps> = ({
             <div className="hidden md:flex gap-2 shrink-0">
               <button
                 type="button"
+                aria-label="Scroll branches left"
                 onClick={() => handleScroll('left')}
                 className="w-10 h-10 rounded-full border border-[#D2C5B0] bg-white flex items-center justify-center hover:bg-[#795900] hover:text-white transition-colors cursor-pointer shadow-xs"
                 title="Scroll Left"
@@ -72,6 +74,7 @@ export const BranchLocatorSection: React.FC<BranchLocatorSectionProps> = ({
               </button>
               <button
                 type="button"
+                aria-label="Scroll branches right"
                 onClick={() => handleScroll('right')}
                 className="w-10 h-10 rounded-full border border-[#D2C5B0] bg-white flex items-center justify-center hover:bg-[#795900] hover:text-white transition-colors cursor-pointer shadow-xs"
                 title="Scroll Right"

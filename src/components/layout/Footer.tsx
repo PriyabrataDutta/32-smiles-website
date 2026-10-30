@@ -23,9 +23,9 @@ export const Footer: React.FC = () => {
               <Phone className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="font-serif text-lg sm:text-xl font-bold text-[#FFDEA0]">
+              <h2 className="font-serif text-lg sm:text-xl font-bold text-[#FFDEA0]">
                 Dental Emergency or Acute Toothache?
-              </h4>
+              </h2>
               <p className="text-xs sm:text-sm text-[#D2C5B0]">
                 Instant priority emergency routing across all 9 Bangalore clinics
               </p>
@@ -84,9 +84,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 2: Speciality Treatments */}
           <div>
-            <h4 className="font-serif text-sm font-bold text-[#FFDEA0] uppercase tracking-wider mb-4 border-b border-[#4E4636] pb-2">
+            <h3 className="font-serif text-sm font-bold text-[#FFDEA0] uppercase tracking-wider mb-4 border-b border-[#4E4636] pb-2">
               Speciality Treatments
-            </h4>
+            </h3>
             <ul className="grid grid-cols-1 gap-2.5 text-xs text-[#D2C5B0]">
               <li>
                 <Link
@@ -157,9 +157,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: 9 Bangalore Clinics */}
           <div>
-            <h4 className="font-serif text-sm font-bold text-[#FFDEA0] uppercase tracking-wider mb-4 border-b border-[#4E4636] pb-2">
+            <h3 className="font-serif text-sm font-bold text-[#FFDEA0] uppercase tracking-wider mb-4 border-b border-[#4E4636] pb-2">
               Our 9 Clinics in Bangalore
-            </h4>
+            </h3>
             <div className="grid grid-cols-2 gap-2 text-xs text-[#D2C5B0]">
               {CLINIC_BRANCHES.map((b) => (
                 <Link
@@ -185,9 +185,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Trust & Quick Links */}
           <div className="space-y-4">
-            <h4 className="font-serif text-sm font-bold text-[#FFDEA0] uppercase tracking-wider mb-4 border-b border-[#4E4636] pb-2">
+            <h3 className="font-serif text-sm font-bold text-[#FFDEA0] uppercase tracking-wider mb-4 border-b border-[#4E4636] pb-2">
               Trust & Certifications
-            </h4>
+            </h3>
 
             {/* Google Rating Card */}
             <div className="bg-[#3B322B] p-4 rounded-2xl border border-[#4E4636] space-y-1">
@@ -241,7 +241,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left text-xs text-[#807663] gap-3">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left text-xs text-[#D2C5B0] gap-3">
           <p>© 2026 32 Smiles Multispeciality Dental Clinics. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>

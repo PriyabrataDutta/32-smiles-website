@@ -1,0 +1,20 @@
+# 32 SMILES Multispeciality Dental Clinics
+
+> Premium dental healthcare and multispeciality clinical excellence in Bengaluru, Karnataka, India. Founded in 2005.
+
+## Quick Facts
+- **Locations**: 9 Clinics across Bangalore (Indiranagar, Whitefield, Koramangala, Jayanagar, HSR Layout, Malleshwaram, JP Nagar, Electronic City, Yelahanka)
+- **Key Specialities**: Root Canal Treatment (Endodontics), Invisalign & Clear Aligners (Orthodontics), 3D Guided Dental Implants (Implantology), Cosmetic Dentistry & Veneers, Wisdom Tooth Surgery (Oral Surgery), Laser Teeth Whitening
+- **Experience**: 20+ Years of Dental Excellence
+- **Verified Patients**: 15,000+ Happy Patients treated
+- **Emergency Hotline**: +91 94827 12345 (24/7 Priority Emergency Triage)
+- **Booking URL**: https://32-smiles-website.vercel.app/book-appointment
+
+## Core URLs
+- [Home Page](https://32-smiles-website.vercel.app/)
+- [Book Appointment](https://32-smiles-website.vercel.app/book-appointment)
+- [All Dental Treatments](https://32-smiles-website.vercel.app/treatments)
+- [Clinic Locations & Contact](https://32-smiles-website.vercel.app/branches)
+- [Dental Specialists & Doctors](https://32-smiles-website.vercel.app/doctors)
+- [Smile Gallery (Before/After)](https://32-smiles-website.vercel.app/smile-gallery)
+- [Pricing & 0% EMI](https://32-smiles-website.vercel.app/pricing-emi)

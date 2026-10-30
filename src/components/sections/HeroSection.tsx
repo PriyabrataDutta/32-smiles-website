@@ -37,7 +37,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   eyebrow = 'EXPERT DENTAL CARE FOR A HEALTHIER TOMORROW',
   headline,
   subtitle = 'Advanced dental treatments, expert specialists and compassionate care — all under one roof in Bengaluru.',
-  imageSrc = '/32-smiles-hero.png',
+  imageSrc = '/32-smiles-hero.webp',
   primaryCtaText = 'Book an Appointment',
   primaryCtaLink = '/book-appointment',
   secondaryCtaText = 'Explore Treatments',
@@ -160,8 +160,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 alt="Friendly Indian female dentist treating a smiling, relaxed female patient in a modern dental chair at 32 Smiles clinic"
                 fill
                 priority
-                sizes="(max-width: 1023px) 100vw, 55vw"
-                quality={90}
+                fetchPriority="high"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 650px"
+                quality={80}
                 className="object-cover object-[70%_center]"
               />
 

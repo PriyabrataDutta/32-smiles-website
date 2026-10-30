@@ -64,7 +64,7 @@ export default function ReviewsPage() {
                 <p className="text-xs font-bold text-[#795900] uppercase tracking-wider">
                   Exceptional Rating
                 </p>
-                <p className="text-[11px] text-[#807663] mt-1">
+                <p className="text-[11px] text-[#5C5143] mt-1">
                   Across 15,200+ Reviews on Google & Practo
                 </p>
               </div>
@@ -80,7 +80,7 @@ export default function ReviewsPage() {
                         style={{ width: bar.percentage }}
                       ></div>
                     </div>
-                    <span className="w-14 text-right text-[11px] text-[#807663] font-semibold">
+                    <span className="w-14 text-right text-[11px] text-[#5C5143] font-semibold">
                       {bar.percentage}
                     </span>
                   </div>

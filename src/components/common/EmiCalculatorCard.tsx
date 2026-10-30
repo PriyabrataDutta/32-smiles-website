@@ -76,11 +76,13 @@ export const EmiCalculatorCard: React.FC<EmiCalculatorCardProps> = ({
       {/* Slider and Manual Input */}
       <div className="bg-white p-6 rounded-2xl border border-[#EBE3D7] mb-8 space-y-4 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <label className="text-xs font-bold text-[#2B2420]">
+          <label htmlFor="treatment-cost-input" className="text-xs font-bold text-[#2B2420]">
             Estimated Treatment Cost
           </label>
           <div className="flex items-center gap-2">
             <input
+              id="treatment-cost-input"
+              aria-label="Estimated treatment cost in rupees"
               type="number"
               min={5000}
               max={600000}
@@ -93,6 +95,8 @@ export const EmiCalculatorCard: React.FC<EmiCalculatorCardProps> = ({
         </div>
 
         <input
+          id="treatment-cost-range"
+          aria-label="Adjust estimated treatment cost with slider"
           type="range"
           min={5000}
           max={600000}
@@ -101,7 +105,7 @@ export const EmiCalculatorCard: React.FC<EmiCalculatorCardProps> = ({
           onChange={(e) => setCost(Number(e.target.value))}
           className="w-full accent-[#795900] cursor-pointer"
         />
-        <div className="flex justify-between text-[11px] text-[#807663] font-medium">
+        <div className="flex justify-between text-[11px] text-[#5C5143] font-medium">
           <span>₹5,000</span>
           <span>₹3,00,000</span>
           <span>₹6,00,000</span>
@@ -112,12 +116,12 @@ export const EmiCalculatorCard: React.FC<EmiCalculatorCardProps> = ({
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         {/* 6 Months */}
         <div className="bg-white p-5 rounded-2xl border border-[#D2C5B0] text-center hover:border-[#795900] transition-colors relative">
-          <span className="text-[10px] font-bold tracking-wider text-[#807663] uppercase">
+          <span className="text-[10px] font-bold tracking-wider text-[#5C5143] uppercase">
             6 Months Tenure
           </span>
           <div className="font-serif text-2xl font-bold text-[#795900] my-1">
             {formatCurrency(emi6)}
-            <span className="text-xs text-[#807663] font-sans font-normal">/mo</span>
+            <span className="text-xs text-[#5C5143] font-sans font-normal">/mo</span>
           </div>
           <span className="inline-block text-[10px] bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded-full">
             0% Interest
@@ -129,12 +133,12 @@ export const EmiCalculatorCard: React.FC<EmiCalculatorCardProps> = ({
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#795900] text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
             Most Popular
           </div>
-          <span className="text-[10px] font-bold tracking-wider text-[#807663] uppercase">
+          <span className="text-[10px] font-bold tracking-wider text-[#5C5143] uppercase">
             12 Months Tenure
           </span>
           <div className="font-serif text-2xl font-bold text-[#795900] my-1">
             {formatCurrency(emi12)}
-            <span className="text-xs text-[#807663] font-sans font-normal">/mo</span>
+            <span className="text-xs text-[#5C5143] font-sans font-normal">/mo</span>
           </div>
           <span className="inline-block text-[10px] bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded-full">
             0% Interest
@@ -143,12 +147,12 @@ export const EmiCalculatorCard: React.FC<EmiCalculatorCardProps> = ({
 
         {/* 24 Months */}
         <div className="bg-white p-5 rounded-2xl border border-[#D2C5B0] text-center hover:border-[#795900] transition-colors">
-          <span className="text-[10px] font-bold tracking-wider text-[#807663] uppercase">
+          <span className="text-[10px] font-bold tracking-wider text-[#5C5143] uppercase">
             24 Months Tenure
           </span>
           <div className="font-serif text-2xl font-bold text-[#795900] my-1">
             {formatCurrency(emi24)}
-            <span className="text-xs text-[#807663] font-sans font-normal">/mo</span>
+            <span className="text-xs text-[#5C5143] font-sans font-normal">/mo</span>
           </div>
           <span className="inline-block text-[10px] bg-amber-50 text-amber-800 font-semibold px-2 py-0.5 rounded-full">
             Low Interest Partner

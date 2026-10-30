@@ -28,7 +28,7 @@ export const Navbar: React.FC = () => {
               fill
               sizes="(max-width: 640px) 160px, 192px"
               className="object-contain"
-              priority
+              loading="eager"
             />
           </div>
         </Link>

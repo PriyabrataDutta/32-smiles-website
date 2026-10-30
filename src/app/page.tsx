@@ -59,9 +59,9 @@ export default function HomePage() {
 
               <div className="mt-6 p-6 rounded-2xl bg-[#FAF4EA] border border-[#E8DCC8] flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                  <h4 className="font-serif text-lg font-bold text-[#2B2420]">
+                  <h3 className="font-serif text-lg font-bold text-[#2B2420]">
                     {primaryCase.title}
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[#6E6458] mt-1">{primaryCase.notes}</p>
                 </div>
                 <Link

@@ -67,7 +67,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                     </span>
                   )}
                 </div>
-                <div className="text-[11px] text-[#807663] mt-1 flex items-center justify-between">
+                <div className="text-[11px] text-[#5C5143] mt-1 flex items-center justify-between">
                   <span>{item.treatment}</span>
                   <span className="font-semibold text-[#795900]">{item.branch} Branch</span>
                 </div>

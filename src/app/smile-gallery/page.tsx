@@ -107,7 +107,7 @@ export default function SmileGalleryPage() {
                     <span className="text-xs font-bold text-[#795900] bg-[#FAF4EA] px-3 py-1 rounded-full border border-[#E8DCC8]">
                       {item.categoryLabel}
                     </span>
-                    <span className="text-xs text-[#807663] font-medium">
+                    <span className="text-xs text-[#5C5143] font-medium">
                       Patient Age: {item.patientAge}
                     </span>
                   </div>
@@ -129,7 +129,7 @@ export default function SmileGalleryPage() {
                   </div>
 
                   <div className="pt-4 border-t border-[#FAF4EA] flex items-center justify-between text-xs">
-                    <span className="text-[#807663]">
+                    <span className="text-[#5C5143]">
                       Duration: <strong>{item.durationMonths || item.durationDays}</strong>
                     </span>
                     <Link

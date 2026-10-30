@@ -64,7 +64,7 @@ export const DoctorBiosSection: React.FC<DoctorBiosSectionProps> = ({
                     {doctor.specialty}
                   </p>
 
-                  <p className="text-xs text-[#807663] mb-4">
+                  <p className="text-xs text-[#5C5143] mb-4">
                     {doctor.qualifications}
                   </p>
 
