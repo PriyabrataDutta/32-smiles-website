@@ -63,11 +63,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       </svg>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1.15fr] lg:gap-12 xl:gap-16">
+        <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.05fr_1.15fr] lg:gap-12 xl:gap-16">
           {/* Left Editorial Content */}
           <div className="relative z-10 flex flex-col text-left">
             {/* Eyebrow with Target Icon */}
-            <div className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#795900] sm:text-[12.5px]">
+            <div className="mb-3 sm:mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#795900] sm:text-[12.5px]">
               <svg
                 className="h-3.5 w-3.5 text-[#795900] shrink-0"
                 viewBox="0 0 24 24"
@@ -85,7 +85,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Main Headline */}
             <h1
               id="hero-title"
-              className="font-serif text-[2.6rem] font-bold leading-[1.06] tracking-tight text-[#2B2420] sm:text-5xl lg:text-[58px] xl:text-[64px]"
+              className="font-serif text-[2.5rem] font-bold leading-[1.06] tracking-tight text-[#2B2420] sm:text-5xl lg:text-[58px] xl:text-[64px]"
             >
               {headline ?? (
                 <>
@@ -99,54 +99,57 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </h1>
 
             {/* Supporting Subtext */}
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-[#5C5147] sm:text-lg sm:leading-8">
+            <p className="mt-4 sm:mt-5 max-w-xl text-base leading-relaxed text-[#5C5147] sm:text-lg sm:leading-8">
               {subtitle}
             </p>
 
-            {/* CTA Buttons Row */}
-            <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
-              <Link
-                href={primaryCtaLink}
-                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-[#795900] px-7 py-3.5 sm:py-4 text-sm sm:text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(121,89,0,0.2)] transition-all hover:bg-[#573F00] hover:shadow-[0_12px_28px_rgba(87,63,0,0.28)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A93B]"
-              >
-                <Calendar className="h-4 w-4 shrink-0 text-white" aria-hidden="true" />
-                <span>{primaryCtaText}</span>
-                <ArrowRight
-                  className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </Link>
+            {/* Desktop-Only Action & Trust Area (lg:flex) */}
+            <div className="hidden lg:block">
+              {/* CTA Buttons Row */}
+              <div className="mt-8 flex flex-row items-center gap-4">
+                <Link
+                  href={primaryCtaLink}
+                  className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-[#795900] px-7 py-4 text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(121,89,0,0.2)] transition-all hover:bg-[#573F00] hover:shadow-[0_12px_28px_rgba(87,63,0,0.28)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A93B]"
+                >
+                  <Calendar className="h-4 w-4 shrink-0 text-white" aria-hidden="true" />
+                  <span>{primaryCtaText}</span>
+                  <ArrowRight
+                    className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </Link>
 
-              <Link
-                href={secondaryCtaLink}
-                className="group inline-flex items-center justify-center gap-2.5 rounded-full border border-[#2B2420] bg-transparent px-7 py-3.5 sm:py-4 text-sm sm:text-[15px] font-semibold text-[#2B2420] transition-colors hover:bg-[#2B2420]/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A93B]"
-              >
-                <span>{secondaryCtaText}</span>
-                <ArrowRight
-                  className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </Link>
-            </div>
+                <Link
+                  href={secondaryCtaLink}
+                  className="group inline-flex items-center justify-center gap-2.5 rounded-full border border-[#2B2420] bg-transparent px-7 py-4 text-[15px] font-semibold text-[#2B2420] transition-colors hover:bg-[#2B2420]/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A93B]"
+                >
+                  <span>{secondaryCtaText}</span>
+                  <ArrowRight
+                    className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </Link>
+              </div>
 
-            {/* Trust Indicators Row */}
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 pt-2 text-xs sm:text-[13px] font-semibold text-[#4E4636]">
-              <div className="flex items-center gap-2">
-                <UserCheck className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
-                <span>Experienced Specialists</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
-                <span>Advanced Technology</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
-                <span>9+ Clinics in Bengaluru</span>
+              {/* Trust Indicators Row */}
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 pt-2 text-[13px] font-semibold text-[#4E4636]">
+                <div className="flex items-center gap-2">
+                  <UserCheck className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
+                  <span>Experienced Specialists</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
+                  <span>Advanced Technology</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
+                  <span>9+ Clinics in Bengaluru</span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Hero Visual Column */}
+          {/* Right Hero Visual Column (Placed right under subtitle on mobile for immediate LCP paint) */}
           <div className="relative mx-auto w-full max-w-2xl lg:max-w-none">
             <div className="relative aspect-[16/10] sm:aspect-[16/10] lg:aspect-[15/10] w-full overflow-hidden rounded-3xl lg:rounded-[2.5rem] bg-[#F7F0E4] shadow-[0_16px_45px_rgba(43,36,32,0.12)]">
               {/* Soft Left Blend Gradient on Desktop */}
@@ -161,8 +164,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 fill
                 priority
                 fetchPriority="high"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 650px"
-                quality={80}
+                sizes="(max-width: 640px) 95vw, (max-width: 1024px) 85vw, 620px"
+                quality={75}
                 className="object-cover object-[70%_center]"
               />
 
@@ -211,6 +214,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                         alt={avatar.alt}
                         fill
                         sizes="32px"
+                        loading="lazy"
                         className="object-cover"
                       />
                     </div>
@@ -226,6 +230,51 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     15,000+ Patients
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile-Only Action & Trust Area (< lg) */}
+          <div className="block lg:hidden w-full space-y-6">
+            {/* CTA Buttons Row */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+              <Link
+                href={primaryCtaLink}
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-[#795900] px-7 py-3.5 sm:py-4 text-sm sm:text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(121,89,0,0.2)] transition-all hover:bg-[#573F00] hover:shadow-[0_12px_28px_rgba(87,63,0,0.28)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A93B]"
+              >
+                <Calendar className="h-4 w-4 shrink-0 text-white" aria-hidden="true" />
+                <span>{primaryCtaText}</span>
+                <ArrowRight
+                  className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </Link>
+
+              <Link
+                href={secondaryCtaLink}
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full border border-[#2B2420] bg-transparent px-7 py-3.5 sm:py-4 text-sm sm:text-[15px] font-semibold text-[#2B2420] transition-colors hover:bg-[#2B2420]/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9A93B]"
+              >
+                <span>{secondaryCtaText}</span>
+                <ArrowRight
+                  className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </Link>
+            </div>
+
+            {/* Trust Indicators Row */}
+            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5 pt-1 text-xs font-semibold text-[#4E4636]">
+              <div className="flex items-center gap-1.5">
+                <UserCheck className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
+                <span>Experienced Specialists</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Sparkles className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
+                <span>Advanced Technology</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <MapPin className="h-4 w-4 shrink-0 text-[#795900]" aria-hidden="true" />
+                <span>9+ Clinics</span>
               </div>
             </div>
           </div>

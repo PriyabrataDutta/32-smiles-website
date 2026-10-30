@@ -21,14 +21,14 @@ export const Navbar: React.FC = () => {
       <nav className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <div className="relative w-40 sm:w-48 h-12">
+          <div className="relative w-40 sm:w-48 h-12 flex items-center">
             <Image
-              src="/logo.png"
+              src="/logo.webp"
               alt="32 Smiles Multispeciality Dental Clinics"
-              fill
+              width={192}
+              height={48}
               sizes="(max-width: 640px) 160px, 192px"
-              className="object-contain"
-              loading="eager"
+              className="h-10 sm:h-11 w-auto object-contain"
             />
           </div>
         </Link>
