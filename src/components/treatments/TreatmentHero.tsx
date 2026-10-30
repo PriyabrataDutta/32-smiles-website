@@ -35,7 +35,7 @@ export const TreatmentHero: React.FC<TreatmentHeroProps> = ({ treatment }) => {
             </p>
 
             {/* Quick Info Tags */}
-            <div className="flex flex-wrap gap-3 pt-2 text-xs">
+            <div className="flex flex-wrap gap-2.5 pt-2 text-xs">
               <div className="p-3 rounded-2xl bg-white border border-[#E8DCC8] shadow-xs">
                 <span className="text-[#5C5143] block text-[10px] uppercase font-bold">Estimated Cost</span>
                 <strong className="text-[#795900] text-sm">{treatment.startingPrice}</strong>
@@ -48,6 +48,12 @@ export const TreatmentHero: React.FC<TreatmentHeroProps> = ({ treatment }) => {
                 <span className="text-[#5C5143] block text-[10px] uppercase font-bold">Recovery</span>
                 <strong className="text-emerald-700 text-sm">{treatment.recovery}</strong>
               </div>
+              {treatment.clinicalSummary && (
+                <div className="p-3 rounded-2xl bg-emerald-50/70 border border-emerald-200 shadow-xs">
+                  <span className="text-emerald-800 block text-[10px] uppercase font-bold">Success Rate</span>
+                  <strong className="text-emerald-900 text-sm">{treatment.clinicalSummary.successRate}</strong>
+                </div>
+              )}
             </div>
 
             {/* CTAs */}

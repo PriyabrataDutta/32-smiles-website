@@ -1,3 +1,57 @@
+export interface TreatmentDoctor {
+  name: string;
+  role: string;
+  qualifications: string;
+  experience: string;
+  casesCount: string;
+  fellowships: string[];
+  avatar: string;
+  bio: string;
+}
+
+export interface ImplantBrand {
+  name: string;
+  origin: string;
+  warranty: string;
+  features: string[];
+  recommendedFor: string;
+  highlight?: boolean;
+}
+
+export interface ComparisonRow {
+  aspect: string;
+  primaryTreatment: string;
+  alternativeOne: string;
+  alternativeTwo: string;
+}
+
+export interface RecoveryPhase {
+  timeline: string;
+  title: string;
+  whatToExpect: string;
+  dietAndCare: string[];
+}
+
+export interface AnatomyPart {
+  partName: string;
+  material: string;
+  function: string;
+  description: string;
+}
+
+export interface CandidacyCriteria {
+  idealCandidates: string[];
+  contraindications: string[];
+}
+
+export interface PricingTier {
+  title: string;
+  price: string;
+  emi: string;
+  includes: string[];
+  recommended?: boolean;
+}
+
 export interface TreatmentDetail {
   slug: string;
   name: string;
@@ -16,6 +70,7 @@ export interface TreatmentDetail {
     number: string;
     title: string;
     description: string;
+    clinicalNote?: string;
   }[];
   technologyUsed: string[];
   faqs: {
@@ -29,6 +84,24 @@ export interface TreatmentDetail {
     title: string;
     notes: string;
   };
+  // Rich Clinical Portal Fields (Optional for other treatments, fully populated for flagship treatments)
+  clinicalSummary?: {
+    successRate: string;
+    anesthesiaType: string;
+    hospitalizationNeeded: string;
+    longevity: string;
+    idealAgeRange: string;
+  };
+  anatomyParts?: AnatomyPart[];
+  candidacyCriteria?: CandidacyCriteria;
+  recoveryPhases?: RecoveryPhase[];
+  implantBrands?: ImplantBrand[];
+  comparisonMatrix?: {
+    headings: [string, string, string];
+    rows: ComparisonRow[];
+  };
+  leadDoctor?: TreatmentDoctor;
+  pricingTiers?: PricingTier[];
 }
 
 export const DETAILED_TREATMENTS: Record<string, TreatmentDetail> = {
@@ -111,38 +184,334 @@ export const DETAILED_TREATMENTS: Record<string, TreatmentDetail> = {
   'dental-implants': {
     slug: 'dental-implants',
     name: '3D Guided Dental Implants',
-    badge: 'Permanent Tooth Replacement',
-    heroTitle: 'Restore Permanent Teeth with Keyhole Dental Implants',
-    heroSubtitle: 'Look, feel, and chew naturally. Swiss and German titanium implants placed with 3D CBCT guided precision backed by Lifetime Warranty.',
+    badge: 'Permanent Tooth Replacement & Implantology',
+    heroTitle: '3D Guided Keyhole Dental Implants in Bangalore',
+    heroSubtitle: 'Restore 99% natural chewing power with Swiss Straumann® & Swedish Nobel Biocare® implants. Painless flapless precision by MDS Implantologists, backed by a Lifetime Warranty.',
     category: 'Implantology',
-    duration: '2 - 3 visits (30 min surgery)',
-    recovery: '1 - 2 days',
+    duration: '20 - 30 mins per implant',
+    recovery: '24 - 48 hours (Fast Recovery)',
     startingPrice: '₹24,999 (0% EMI Available)',
     heroImage: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1200&q=80',
-    overview: 'Dental implants are medical-grade titanium posts surgically anchored into the jawbone, functioning as permanent artificial roots for crowns, bridges, or full dentures.',
+    overview: 'Dental implants are medical-grade titanium posts surgically anchored into the jawbone, functioning as permanent artificial roots for crowns, bridges, or full dentures. Through a biological phenomenon called osseointegration, the titanium fuses directly with your living jawbone, completely halting bone resorption and restoring full bite force without touching adjacent teeth.',
+    clinicalSummary: {
+      successRate: '98.7% Lifetime Osseointegration',
+      anesthesiaType: 'Computerized Painless Local Anesthesia',
+      hospitalizationNeeded: 'Zero (Outpatient Day Procedure)',
+      longevity: '25+ Years to Lifetime with Oral Care',
+      idealAgeRange: '18+ Years (Post Jawbone Maturity)',
+    },
     symptoms: [
-      'One or more missing teeth affecting speech or appearance',
-      'Difficulty chewing favorite foods due to missing molars',
-      'Loose, uncomfortable, or clicking removable dentures',
-      'Bone shrinkage and facial sagging caused by missing teeth',
+      'Single or multiple missing teeth affecting chewing or speech',
+      'Difficulty chewing tough, fibrous, or favorite foods due to missing molars',
+      'Loose, slipping, or painful removable dentures that click when talking',
+      'Visible jawbone shrinkage and sunken facial contours caused by missing teeth',
+      'Reluctance to shave down adjacent healthy teeth for a traditional dental bridge',
     ],
     benefits: [
-      'Restores 99% of natural bite force—eat anything you love',
-      'Prevents jawbone shrinkage and maintains youthful facial contour',
-      'No trimming or damage to adjacent healthy teeth',
-      'Lifetime manufacturer warranty on Nobel Biocare & Straumann implants',
+      'Restores 99% of natural bite force—eat apples, nuts, and meats with zero hesitation',
+      'Stimulates living jawbone cells to halt bone resorption and maintain youthful facial structure',
+      'Preserves adjacent teeth: 100% independent anchor that requires zero grinding of neighbor teeth',
+      'Lifetime global manufacturer warranty on Swiss Straumann® and Nobel Biocare® implants',
+      'Painless flapless keyhole surgery: computer-guided precision with zero scalpel cuts and minimal bleeding',
+      'Zero-cost 0% EMI financing starting at ₹2,499/month with instant approval',
     ],
+    anatomyParts: [
+      {
+        partName: '1. Titanium / Roxolid Fixture (Artificial Root)',
+        material: 'Medical Grade 4 Titanium or Straumann Roxolid® Ti-Zr Alloy',
+        function: 'Anchors permanently into jawbone via Osseointegration',
+        description: 'A precision-threaded biocompatible post placed into the jawbone. Its nano-roughened surface stimulates osteoblast cells to fuse directly with the titanium, creating an unshakeable foundation that halts bone resorption.',
+      },
+      {
+        partName: '2. Custom CAD/CAM Abutment (Precision Connector)',
+        material: 'Titanium or High-Translucent Zirconia',
+        function: 'Connects the fixture to the crown with zero micro-gaps',
+        description: 'Unlike generic stock abutments, our custom-milled abutment matches your exact gum tissue scalloping. This seals the gum line against bacterial micro-leakage and guides natural emergence profile.',
+      },
+      {
+        partName: '3. Monolithic Multi-Layered Zirconia Crown (Visible Tooth)',
+        material: '5-Axis CAD/CAM Monolithic Zirconia (1200+ MPa)',
+        function: 'Delivers 100% natural aesthetics and full chewing power',
+        description: 'Milled from a single block of multilayered zirconia to replicate the natural shade, gradient, and light translucency of natural enamel. It will never chip, discolor, or stain from coffee or turmeric.',
+      },
+    ],
+    candidacyCriteria: {
+      idealCandidates: [
+        'Adults (18+) with one or more missing teeth seeking a permanent lifetime solution',
+        'Patients struggling with unstable, clicking, or painful removable dentures',
+        'Individuals with adequate bone density or those eligible for gentle bone grafting / sinus lift',
+        'Anyone who wants to preserve neighboring healthy teeth from being shaved down for a dental bridge',
+        'Patients seeking natural appearance, unrestricted eating, and confident speech',
+      ],
+      contraindications: [
+        'Uncontrolled diabetes (HbA1c > 8.0%) — we stabilize blood sugar with your physician prior to surgery',
+        'Heavy active smoking (>15 cigarettes/day) without commitment to a pre/post-op cessation window',
+        'Active untreated periodontal/gum infection (must be sterilized and healed before fixture placement)',
+        'Recent intravenous bisphosphonate therapy or active radiation therapy to the head and neck',
+      ],
+    },
     steps: [
-      { number: '01', title: '3D CBCT Bone Scan', description: 'High-resolution 3D scan evaluates bone density, nerve canals, and sinus floors for surgical precision.' },
-      { number: '02', title: 'Keyhole Implant Placement', description: 'Computerized surgical guide allows flapless, sutureless titanium post placement in just 20-30 minutes.' },
-      { number: '03', title: 'Osseointegration', description: 'The implant fuses naturally with your jawbone over a few weeks to create an unshakeable bond.' },
-      { number: '04', title: 'Custom Zirconia Crown', description: 'A custom shade-matched zirconia crown is secured to complete your permanent tooth replacement.' },
+      {
+        number: '01',
+        title: 'High-Definition 3D CBCT & Digital Treatment Simulation',
+        description: 'We perform a 3D Cone Beam Computed Tomography (CBCT) scan and high-speed intraoral digital scan. Virtual implant planning software maps your nerve canals, maxillary sinuses, and bone density down to 0.1mm accuracy.',
+        clinicalNote: 'Zero surgical guesswork: implant angulation, depth, and crown emergence are fully pre-planned in 3D CAD software.',
+      },
+      {
+        number: '02',
+        title: '3D-Guided Flapless Keyhole Placement',
+        description: 'Using a 3D-printed stereolithographic surgical stent, the titanium fixture is placed through a tiny keyhole in the gum under computerized local anesthesia. No scalpel cuts and no sutures are required in ideal bone.',
+        clinicalNote: 'Average surgical duration: 20 to 30 minutes. Virtually painless with minimal post-operative soreness.',
+      },
+      {
+        number: '03',
+        title: 'Bio-Osseointegration & Temporary Crown',
+        description: 'Over 6 to 12 weeks (or 3 to 4 weeks with Swiss Straumann SLActive), your bone cells integrate directly with the porous titanium surface. An aesthetic temporary tooth is placed so you never leave the clinic with a gap.',
+        clinicalNote: 'Patients resume normal office routines within 24 to 48 hours without interruption.',
+      },
+      {
+        number: '04',
+        title: 'Digital Scan & Permanent Monolithic Zirconia Crown',
+        description: 'Once osseointegration is confirmed, an optical 3D scan captures the exact position of the fixture. A robotic 5-axis milling machine sculpts your permanent Monolithic Zirconia crown, torqued to exact specifications.',
+        clinicalNote: 'Delivers 99% of natural chewing strength, accompanied by an official Lifetime Manufacturer Warranty Card.',
+      },
     ],
-    technologyUsed: ['3D CBCT Imaging', 'Computer-Guided Surgical Stents', 'Straumann & Nobel Biocare Systems'],
+    implantBrands: [
+      {
+        name: 'Straumann® Roxolid SLActive',
+        origin: 'Basel, Switzerland',
+        warranty: 'Lifetime Global Warranty',
+        features: [
+          'Roxolid® Titanium-Zirconium superalloy (15% higher tensile strength than pure titanium)',
+          'SLActive® hydrophilic surface enables rapid 3 to 4 week osseointegration',
+          'Scientifically validated in over 3,000 independent clinical studies',
+          'Ideal for diabetic patients, compromised bone volume, or immediate loading',
+        ],
+        recommendedFor: 'Premium rapid healing, front aesthetic smile zone, & medically complex cases',
+        highlight: true,
+      },
+      {
+        name: 'Nobel Biocare® Active / Replace',
+        origin: 'Gothenburg, Sweden / USA',
+        warranty: 'Lifetime Global Warranty',
+        features: [
+          'Direct legacy of Prof. Per-Ingvar Brånemark (Father of Modern Implantology)',
+          'TiUnite® biomimetic porous oxide surface accelerates bone formation',
+          'Global clinical benchmark for All-on-4® full-mouth immediate rehabilitation',
+          'Maximum primary stability even in soft maxillary bone',
+        ],
+        recommendedFor: 'Full-arch fixed teeth restoration & immediate functional loading',
+      },
+      {
+        name: 'Osstem® TSIII SA System',
+        origin: 'Seoul, South Korea',
+        warranty: '15-Year Manufacturer Warranty',
+        features: [
+          'World #1 dental implant system by global surgical volume',
+          'Sub-micron sandblasted and acid-etched (SA) morphologic surface',
+          'Optimal corkscrew thread design provides superior initial cortical stability',
+          'Proven 98.2% 10-year clinical survival rate across international registries',
+        ],
+        recommendedFor: 'Cost-effective high-strength replacement for posterior molar teeth',
+      },
+    ],
+    recoveryPhases: [
+      {
+        timeline: 'Hours 0 – 48',
+        title: 'Immediate Post-Procedure & Comfort Phase',
+        whatToExpect: 'Mild local numbness wears off within 2 to 3 hours. Because we use flapless keyhole guidance, tissue trauma is minimal—most patients describe the feeling as milder than a routine tooth extraction.',
+        dietAndCare: [
+          'Apply an ice pack on the cheek for 15 minutes on / 15 minutes off to prevent swelling',
+          'Enjoy cool, nourishing soft foods (smoothies, yogurt, ice cream, tender khichdi)',
+          'Avoid drinking through a straw or forceful spitting to safeguard clot formation',
+          'Take prescribed anti-inflammatory and antibiotic medications exactly on schedule',
+        ],
+      },
+      {
+        timeline: 'Days 3 – 7',
+        title: 'Soft Tissue Healing & Routine Resumption',
+        whatToExpect: 'Any mild gum tenderness completely subsides. Over 95% of our patients return to full work and normal social routines within 24 to 48 hours.',
+        dietAndCare: [
+          'Begin gentle warm saline mouth rinses after meals (do not swish aggressively)',
+          'Brush natural teeth normally; gently clean around the implant site with an ultra-soft brush',
+          'Transition to soft solids (steamed vegetables, paneer, pasta, fish, scrambled eggs)',
+        ],
+      },
+      {
+        timeline: 'Weeks 2 – 12',
+        title: 'Osseointegration (Bone-Fusion Phase)',
+        whatToExpect: 'Living bone cells fuse with the titanium surface microscopically. The implant becomes biologically integrated into your skeleton without any pain or sensation.',
+        dietAndCare: [
+          'Attend a brief 15-minute digital check-in at 32 Smiles for mobility verification',
+          'Maintain regular interdental brushing and flossing routines',
+          'Enjoy a normal healthy diet, avoiding biting directly on extremely hard items (ice, nutshells)',
+        ],
+      },
+      {
+        timeline: 'Week 12 & Beyond',
+        title: 'Permanent Zirconia Crown Delivery & Full Chewing',
+        whatToExpect: 'Your custom CAD/CAM Monolithic Zirconia crown is torqued into place. You now possess a permanent, aesthetic tooth that looks and feels indistinguishable from natural enamel.',
+        dietAndCare: [
+          'Chew any food you love without restriction (apples, steaks, crispy dosas, dry fruits)',
+          'Schedule routine 6-month preventive cleanings and checkups at any of our 9 clinics',
+          'Smile, speak, and laugh with complete lifelong confidence backed by your warranty card',
+        ],
+      },
+    ],
+    comparisonMatrix: {
+      headings: ['3D Guided Dental Implant', 'Traditional Tooth-Supported Bridge', 'Removable Acrylic Denture'],
+      rows: [
+        {
+          aspect: 'Longevity & Durability',
+          primaryTreatment: '25+ Years to Lifetime (Permanent osseointegration)',
+          alternativeOne: '7 – 10 Years (Recurrent decay under bridge crowns)',
+          alternativeTwo: '3 – 5 Years (Wear, breakage, and gum shrinkage)',
+        },
+        {
+          aspect: 'Preservation of Neighbor Teeth',
+          primaryTreatment: '100% Preserved (Zero cutting of adjacent healthy teeth)',
+          alternativeOne: 'Destructive: 2 healthy adjacent teeth shaved down by 50%',
+          alternativeTwo: 'Metal clasps wear down enamel and loosen anchor teeth',
+        },
+        {
+          aspect: 'Jawbone Resorption Prevention',
+          primaryTreatment: 'Halts bone loss completely by stimulating osteoblasts',
+          alternativeOne: 'Bone under the bridge gap continuously shrinks away',
+          alternativeTwo: 'Accelerates bone loss through continuous surface friction',
+        },
+        {
+          aspect: 'Chewing Power (Bite Force)',
+          primaryTreatment: '98% – 100% of Natural Bite Power (Eat anything)',
+          alternativeOne: '65% – 75% Chewing Power (Struggles with tough meats)',
+          alternativeTwo: '25% – 35% Chewing Power (Painful slipping on hard foods)',
+        },
+        {
+          aspect: 'Oral Hygiene & Maintenance',
+          primaryTreatment: 'Brush & floss normally just like a natural tooth',
+          alternativeOne: 'Requires special threader floss underneath the bridge',
+          alternativeTwo: 'Must be removed nightly and soaked in chemical cleansers',
+        },
+        {
+          aspect: 'Long-Term 20-Year Cost',
+          primaryTreatment: 'Lowest overall (One-time investment, zero repeat costs)',
+          alternativeOne: 'High (Requires 2–3 full replacements & potential RCTs)',
+          alternativeTwo: 'Moderate (Frequent relining, adjustments, adhesives, remakes)',
+        },
+      ],
+    },
+    leadDoctor: {
+      name: 'Dr. Arjun V.',
+      role: 'Chief Implantologist & Prosthodontist',
+      qualifications: 'BDS, MDS (Prosthodontics & Implantology), FICOI (USA)',
+      experience: '18+ Years Clinical Experience',
+      casesCount: '10,000+ Implants Placed',
+      fellowships: [
+        'Fellow of the International Congress of Oral Implantologists (FICOI, USA)',
+        'Master in Computer-Guided 3D Keyhole Implantology',
+        'Certified All-on-4® and All-on-6® Full Mouth Rehabilitation Specialist',
+      ],
+      avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCHYwys9MySFxGz1AVrIoCdoSPeBkv0HIMNBMkN_FzarjOcL_E0sLLX_V9sRo4exwASVovmcjo0nbKTyfi7E_Oqvjpg7r3xWMiM7Gz80YqO7HjegjCze_ng1VyCh7UHwWjRSnRzwRiHZ3LSC6KYlY8mZd2gaQ80zCl9W8-xULWets3YTrke8OFzXFjxOduxUlKrkIva8RBptAcCLBJAm7_U35ddO6-ta94F8sznW6CbgoU5sE_yblh9',
+      bio: 'Dr. Arjun V. is one of South India’s leading dental implantologists with over 18 years of specialized surgical excellence. Having trained under international pioneers in Europe and the United States, Dr. Arjun spearheaded computerized 3D CBCT guided surgery protocols at 32 Smiles. With more than 10,000 implants successfully placed and a documented 98.7% success rate, his practice focuses on flapless keyhole comfort and lifetime aesthetic durability.',
+    },
+    pricingTiers: [
+      {
+        title: 'Osstem® Korean System',
+        price: '₹24,999',
+        emi: 'From ₹2,083/mo (0% Interest)',
+        includes: [
+          'Medical Grade 4 Titanium Fixture',
+          'Standard CAD/CAM Titanium Abutment',
+          'High-Strength Monolithic Zirconia Crown',
+          '15-Year Manufacturer Warranty Card',
+          'Digital X-Rays & Follow-up Checks',
+        ],
+      },
+      {
+        title: 'Nobel Biocare® Swedish System',
+        price: '₹36,500',
+        emi: 'From ₹3,042/mo (0% Interest)',
+        recommended: true,
+        includes: [
+          'Nobel Biocare Active / Replace Titanium Post',
+          'Custom 3D CAD/CAM Milled Titanium Abutment',
+          'Multi-Layered Monolithic Zirconia Crown',
+          'Official Lifetime Global Warranty Card',
+          'Computerized 3D Surgical Stent Included',
+          '1-Year Free Maintenance & Cleaning',
+        ],
+      },
+      {
+        title: 'Straumann® Swiss Roxolid',
+        price: '₹48,000',
+        emi: 'From ₹4,000/mo (0% Interest)',
+        includes: [
+          'Roxolid® Ti-Zr Superalloy with SLActive®',
+          'Ultra-Rapid 3-4 Week Osseointegration',
+          'Custom Aesthetic E-Max / Zirconia Crown',
+          'Lifetime International Replacement Guarantee',
+          'Priority Operating Slot with Dr. Arjun V.',
+          'Complimentary CBCT 3D Bone Analysis',
+        ],
+      },
+    ],
+    technologyUsed: [
+      '3D CBCT Imaging',
+      'Computer-Guided 3D Surgical Stents',
+      'Swiss Straumann® & Swedish Nobel Biocare®',
+      '5-Axis CAD/CAM Monolithic Zirconia Milling',
+      'Computerized Painless Local Anesthesia Delivery',
+    ],
     faqs: [
-      { id: 'imp-1', question: 'How long do dental implants last?', answer: 'With regular oral hygiene and routine checkups, dental implants are designed to last a lifetime.' },
-      { id: 'imp-2', question: 'Is the implant procedure painful?', answer: 'Keyhole guided implants cause minimal tissue trauma. Most patients report only mild pressure and resume normal work the next day.' },
-      { id: 'imp-3', question: 'Can I replace all my teeth at once?', answer: 'Yes! We offer All-on-4 and All-on-6 full-mouth rehabilitation where an entire arch of fixed teeth is anchored onto 4 or 6 implants.' },
+      {
+        id: 'imp-1',
+        question: 'Is dental implant surgery painful during or after the procedure?',
+        answer: 'No. The procedure is performed under computerized local anesthesia that ensures complete numbness of the treatment area. Because we use 3D CBCT-guided flapless keyhole surgery, there are no scalpel incisions or stitches in most cases. Patients report only minor pressure during placement and minimal tenderness the next day, easily managed with mild pain relievers.',
+      },
+      {
+        id: 'imp-2',
+        question: 'How long do dental implants actually last?',
+        answer: 'Dental implants are designed to be a permanent, lifetime solution. The titanium post fuses biologically with your jawbone through osseointegration. With standard oral hygiene (daily brushing, flossing, and 6-month checkups), dental implants boast a 98.7% success rate over 25+ years. Premium systems like Nobel Biocare and Straumann come with an official Lifetime Global Warranty.',
+      },
+      {
+        id: 'imp-3',
+        question: 'Can I get dental implants if I have low bone density or bone loss?',
+        answer: 'Yes! Bone loss is common after losing a tooth, but it rarely disqualifies you from implants. Our implantologists use advanced bone regeneration techniques including synthetic bone grafting, platelet-rich fibrin (PRF), and sinus lifts to rebuild bone volume. We also offer tilted implants and short implants that maximize available native bone.',
+      },
+      {
+        id: 'imp-4',
+        question: 'What is the advantage of 3D Guided Keyhole Surgery over conventional surgery?',
+        answer: 'Conventional implant placement requires cutting open the gum flap to expose the jawbone, followed by manual drilling and suturing. In contrast, 3D Guided Keyhole surgery uses a pre-printed surgical stent mapped to your CBCT scan. The implant is placed through a tiny 3mm pinpoint hole with zero scalpel cuts, reducing surgery time to just 20 minutes with virtually no swelling, bleeding, or downtime.',
+      },
+      {
+        id: 'imp-5',
+        question: 'Can diabetic patients safely get dental implants at 32 Smiles?',
+        answer: 'Yes, provided blood glucose levels are controlled. Patients with an HbA1c below 7.5%–8.0% have implant success rates virtually identical to non-diabetics. We collaborate with your physician, administer prophylactic antibiotics, and often use Swiss Straumann SLActive implants, whose hydrophilic surface accelerates osseointegration even in compromised vascular environments.',
+      },
+      {
+        id: 'imp-6',
+        question: 'Why choose a dental implant over a 3-unit dental bridge?',
+        answer: 'A dental bridge requires irreversibly grinding down two healthy neighboring teeth by 50% to serve as anchors. Furthermore, the jawbone underneath the missing tooth gap continues to shrink away. Dental implants are 100% independent anchors that preserve your healthy adjacent teeth, stimulate bone growth, and last a lifetime, whereas bridges typically fail and need replacement every 7 to 10 years.',
+      },
+      {
+        id: 'imp-7',
+        question: 'What is All-on-4® or All-on-6® full-mouth teeth replacement?',
+        answer: 'All-on-4 / All-on-6 is a revolutionary technique for patients who have lost all or most of their teeth. Rather than placing an implant for each tooth, we place 4 or 6 strategically angled titanium implants per jaw to anchor a full, permanent bridge of 12 to 14 teeth. In many cases, temporary fixed teeth can be attached on the exact same day.',
+      },
+      {
+        id: 'imp-8',
+        question: 'How soon can an implant be placed after a tooth extraction?',
+        answer: 'In many cases, an implant can be placed during the exact same appointment as the tooth extraction (Immediate Implant Placement). If active infection or significant bone loss is present, we may advise socket preservation and allow 8 to 12 weeks of natural healing before placing the fixture.',
+      },
+      {
+        id: 'imp-9',
+        question: 'What 0% interest EMI options are available for dental implants?',
+        answer: 'We provide zero-cost 0% EMI schemes through partners including Bajaj Finserv, HDFC Bank, ICICI Bank, and Pine Labs. Monthly installments start from ₹2,499/month across 6, 9, or 12-month tenures with zero processing fees and instant paperless approval at all 9 clinics.',
+      },
+      {
+        id: 'imp-10',
+        question: 'At which 32 Smiles clinics are dental implant surgeries performed?',
+        answer: 'Dental implant consultations and guided surgical procedures are conducted across all 9 of our Bangalore clinics: Indiranagar, Koramangala, HSR Layout, Whitefield, BTM Layout, Jayanagar, Electronic City, Marathahalli, and Sarjapura Road.',
+      },
     ],
   },
 
