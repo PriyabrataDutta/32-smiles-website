@@ -18,3 +18,4 @@
 - [Dental Specialists & Doctors](https://32-smiles-website.vercel.app/doctors)
 - [Smile Gallery (Before/After)](https://32-smiles-website.vercel.app/smile-gallery)
 - [Pricing & 0% EMI](https://32-smiles-website.vercel.app/pricing-emi)
+

@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Sparkles,
@@ -118,16 +120,64 @@ export const TREATMENT_CATEGORIES = [
 ];
 
 export const MegaMenu: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 220); // 220ms grace window gives a smooth, forgiving hover bridge
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className="group">
+    <div
+      className="h-full flex items-center"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <Link
         href="/treatments"
-        className="flex items-center gap-1 hover:text-[#795900] transition-colors py-2"
+        className={`flex items-center gap-1 transition-colors h-full py-2 ${
+          isOpen ? 'text-[#795900]' : 'hover:text-[#795900]'
+        }`}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
       >
         <span>Treatments</span>
-        <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
+        <ChevronDown
+          className={`w-3.5 h-3.5 transition-transform duration-200 ${
+            isOpen ? 'rotate-180 text-[#795900]' : ''
+          }`}
+        />
       </Link>
-      <div className="absolute top-full left-0 right-0 w-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pointer-events-none group-hover:pointer-events-auto">
+
+      {/* Dropdown Container with Hover Bridge */}
+      <div
+        className={`absolute top-full left-0 right-0 w-full pt-2 transition-all duration-200 z-50 ${
+          isOpen
+            ? 'opacity-100 visible pointer-events-auto translate-y-0'
+            : 'opacity-0 invisible pointer-events-none -translate-y-1'
+        }`}
+      >
+        {/* Invisible Hit Bridge Spanning Header Gap */}
+        <div className="absolute -top-4 inset-x-0 h-6 bg-transparent pointer-events-auto" />
+
         <div className="bg-white rounded-3xl shadow-2xl border border-[#E8DCC8] p-7">
           {/* Header Strip */}
           <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-[#FAF4EA]">
@@ -139,6 +189,7 @@ export const MegaMenu: React.FC = () => {
             </div>
             <Link
               href="/treatments"
+              onClick={() => setIsOpen(false)}
               className="text-xs font-semibold text-[#795900] hover:underline flex items-center gap-1.5 group/link"
             >
               <span>Explore Full Treatments Directory & Fee Guide</span>
@@ -158,6 +209,7 @@ export const MegaMenu: React.FC = () => {
                     <Link
                       key={t.href}
                       href={t.href}
+                      onClick={() => setIsOpen(false)}
                       className="block p-3 rounded-2xl hover:bg-[#FDF8EE] border border-transparent hover:border-[#E8DCC8] transition-all group/item"
                     >
                       <div className="flex items-start justify-between gap-1.5">
@@ -168,7 +220,7 @@ export const MegaMenu: React.FC = () => {
                           {t.badge}
                         </span>
                       </div>
-                      <div className="text-[11px] text-[#6E6458] mt-1 leading-normal">
+                      <div className="text-[11px] text-[#5C5143] mt-1 leading-normal">
                         {t.desc}
                       </div>
                     </Link>
@@ -187,7 +239,7 @@ export const MegaMenu: React.FC = () => {
                 <h5 className="font-serif font-bold text-sm text-[#2B2420] leading-snug">
                   Free 3D Optical Scan & Smile Preview
                 </h5>
-                <p className="text-xs text-[#6E6458] mt-1.5 leading-relaxed">
+                <p className="text-xs text-[#5C5143] mt-1.5 leading-relaxed">
                   See your simulated teeth alignment and smile transformation on screen before starting.
                 </p>
                 <div className="mt-4 p-2.5 bg-white/90 rounded-xl border border-[#D9A93B]/25 text-xs text-[#795900] font-semibold flex items-center gap-2">
@@ -199,6 +251,7 @@ export const MegaMenu: React.FC = () => {
               <div className="mt-5 space-y-2">
                 <Link
                   href="/book-appointment"
+                  onClick={() => setIsOpen(false)}
                   className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#795900] hover:bg-[#573F00] text-white text-xs font-bold shadow-xs transition"
                 >
                   <Calendar className="w-3.5 h-3.5" />
@@ -208,6 +261,7 @@ export const MegaMenu: React.FC = () => {
                   href="https://wa.me/919482712345?text=Hi%2032%20Smiles%2C%20I%20have%20a%20query%20about%20dental%20treatments."
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
                   className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-semibold hover:bg-emerald-100 transition"
                 >
                   <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
@@ -218,7 +272,7 @@ export const MegaMenu: React.FC = () => {
           </div>
 
           {/* Bottom Trust Strip */}
-          <div className="mt-5 pt-3.5 border-t border-[#FAF4EA] flex items-center justify-between text-xs text-[#6E6458]">
+          <div className="mt-5 pt-3.5 border-t border-[#FAF4EA] flex items-center justify-between text-xs text-[#5C5143]">
             <div className="flex items-center gap-6">
               <span className="flex items-center gap-1.5 font-medium">
                 <ShieldCheck className="w-4 h-4 text-[#D9A93B]" />
@@ -242,4 +296,3 @@ export const MegaMenu: React.FC = () => {
     </div>
   );
 };
-

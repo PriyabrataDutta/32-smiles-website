@@ -34,39 +34,42 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-7 text-[13px] font-semibold tracking-wide text-[#2B2420]">
-          <Link href="/" className="hover:text-[#795900] transition-colors">
+        <div className="hidden lg:flex items-center h-full gap-7 text-[13px] font-semibold tracking-wide text-[#2B2420]">
+          <Link href="/" className="hover:text-[#795900] transition-colors py-2">
             Home
           </Link>
 
           {/* About Dropdown */}
-          <div className="relative group">
+          <div className="relative group h-full flex items-center">
             <button
               type="button"
-              className="flex items-center gap-1 hover:text-[#795900] transition-colors py-2 cursor-pointer"
+              className="flex items-center gap-1 hover:text-[#795900] transition-colors py-2 cursor-pointer h-full"
             >
               <span>About</span>
               <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
             </button>
-            <div className="absolute top-full left-0 w-56 bg-white rounded-2xl shadow-xl border border-[#E8DCC8] p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-              <Link
-                href="/about"
-                className="block px-4 py-2.5 rounded-xl hover:bg-[#FDF8EE] hover:text-[#795900] transition-colors"
-              >
-                About 32 Smiles
-              </Link>
-              <Link
-                href="/doctors"
-                className="block px-4 py-2.5 rounded-xl hover:bg-[#FDF8EE] hover:text-[#795900] transition-colors"
-              >
-                Our Dental Specialists
-              </Link>
-              <Link
-                href="/facilities"
-                className="block px-4 py-2.5 rounded-xl hover:bg-[#FDF8EE] hover:text-[#795900] transition-colors"
-              >
-                Advanced Facilities
-              </Link>
+            <div className="absolute top-full left-0 w-56 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="absolute -top-3 inset-x-0 h-4 bg-transparent pointer-events-auto" />
+              <div className="bg-white rounded-2xl shadow-xl border border-[#E8DCC8] p-2">
+                <Link
+                  href="/about"
+                  className="block px-4 py-2.5 rounded-xl hover:bg-[#FDF8EE] hover:text-[#795900] transition-colors"
+                >
+                  About 32 Smiles
+                </Link>
+                <Link
+                  href="/doctors"
+                  className="block px-4 py-2.5 rounded-xl hover:bg-[#FDF8EE] hover:text-[#795900] transition-colors"
+                >
+                  Our Dental Specialists
+                </Link>
+                <Link
+                  href="/facilities"
+                  className="block px-4 py-2.5 rounded-xl hover:bg-[#FDF8EE] hover:text-[#795900] transition-colors"
+                >
+                  Advanced Facilities
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -74,29 +77,32 @@ export const Navbar: React.FC = () => {
           <MegaMenu />
 
           {/* Branches Dropdown */}
-          <div className="relative group">
+          <div className="relative group h-full flex items-center">
             <Link
               href="/branches"
-              className="flex items-center gap-1 hover:text-[#795900] transition-colors py-2"
+              className="flex items-center gap-1 hover:text-[#795900] transition-colors py-2 h-full"
             >
               <span>Branches</span>
               <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
             </Link>
-            <div className="absolute top-full -left-10 w-72 bg-white rounded-2xl shadow-2xl border border-[#E8DCC8] p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-              <div className="text-[11px] font-bold text-[#795900] px-3 py-1 uppercase tracking-wider">
-                9 Bangalore Clinics
-              </div>
-              <div className="max-h-80 overflow-y-auto no-scrollbar space-y-1">
-                {CLINIC_BRANCHES.map((b) => (
-                  <Link
-                    key={b.name}
-                    href={`/branches/${b.id}`}
-                    className="block px-3 py-2 rounded-xl text-xs hover:bg-[#FDF8EE] hover:text-[#795900] transition-colors"
-                  >
-                    <div className="font-bold text-[#2B2420]">{b.name}</div>
-                    <div className="text-[10px] text-[#6E6458] truncate">{b.area}</div>
-                  </Link>
-                ))}
+            <div className="absolute top-full -left-10 w-72 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="absolute -top-3 inset-x-0 h-4 bg-transparent pointer-events-auto" />
+              <div className="bg-white rounded-2xl shadow-2xl border border-[#E8DCC8] p-3">
+                <div className="text-[11px] font-bold text-[#795900] px-3 py-1 uppercase tracking-wider">
+                  9 Bangalore Clinics
+                </div>
+                <div className="max-h-80 overflow-y-auto no-scrollbar space-y-1">
+                  {CLINIC_BRANCHES.map((b) => (
+                    <Link
+                      key={b.name}
+                      href={`/branches/${b.id}`}
+                      className="block px-3 py-2 rounded-xl text-xs hover:bg-[#FDF8EE] hover:text-[#795900] transition-colors"
+                    >
+                      <div className="font-bold text-[#2B2420]">{b.name}</div>
+                      <div className="text-[10px] text-[#6E6458] truncate">{b.area}</div>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
