@@ -17,7 +17,7 @@ export const TreatmentBrandShowcase: React.FC<TreatmentBrandShowcaseProps> = ({ 
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B2420] mt-1.5">
           Original Swiss & Swedish Implant Systems
         </h2>
-        <p className="text-xs sm:text-sm text-[#4E4636] mt-1 max-w-2xl leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#4E4636] mt-1 w-full leading-relaxed">
           At 32 Smiles, every fixture is an authentic, serialized medical post manufactured in Switzerland, Sweden, or South Korea, accompanied by a verified manufacturer certificate.
         </p>
       </div>

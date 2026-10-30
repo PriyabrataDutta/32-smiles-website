@@ -23,7 +23,7 @@ export const TreatmentDoctorCard: React.FC<TreatmentDoctorCardProps> = ({
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B2420] mt-1.5">
           Your Operating Implantologist
         </h2>
-        <p className="text-xs sm:text-sm text-[#4E4636] mt-1 max-w-2xl leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#4E4636] mt-1 w-full leading-relaxed">
           At 32 Smiles, implant surgeries are personally executed by senior MDS prosthodontists and implant surgeons with extensive international fellowship credentials.
         </p>
       </div>

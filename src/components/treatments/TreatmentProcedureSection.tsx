@@ -27,7 +27,7 @@ export const TreatmentProcedureSection: React.FC<TreatmentProcedureSectionProps>
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B2420] mt-1.5">
           Step-by-Step 3D Guided Clinical Pathway
         </h2>
-        <p className="text-xs sm:text-sm text-[#4E4636] mt-1 max-w-2xl leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#4E4636] mt-1 w-full leading-relaxed">
           Every stage is computer-navigated using 3D CBCT imaging to eliminate manual error, protect delicate nerves, and ensure painless recovery.
         </p>
       </div>

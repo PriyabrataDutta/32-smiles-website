@@ -17,7 +17,7 @@ export const TreatmentRecoveryTimeline: React.FC<TreatmentRecoveryTimelineProps>
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B2420] mt-1.5">
           Day-by-Day Recovery & Healing Pathway
         </h2>
-        <p className="text-xs sm:text-sm text-[#4E4636] mt-1 max-w-2xl leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#4E4636] mt-1 w-full leading-relaxed">
           Flapless 3D keyhole guidance minimizes tissue disruption. Here is your expected progress from hour zero until your permanent crown is placed.
         </p>
       </div>

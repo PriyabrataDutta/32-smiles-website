@@ -22,7 +22,7 @@ export const TreatmentPricingTiers: React.FC<TreatmentPricingTiersProps> = ({
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B2420] mt-1.5">
           Implant Packages & Pricing
         </h2>
-        <p className="text-xs sm:text-sm text-[#4E4636] mt-1.5 max-w-2xl leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#4E4636] mt-1.5 w-full leading-relaxed">
           All-inclusive pricing with zero hidden fees. Every package covers your titanium fixture, custom CAD/CAM abutment, monolithic zirconia crown, and clinical warranty card.
         </p>
       </div>

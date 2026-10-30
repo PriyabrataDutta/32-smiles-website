@@ -20,7 +20,7 @@ export const TreatmentComparisonTable: React.FC<TreatmentComparisonTableProps> =
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B2420] mt-1.5">
           Dental Implants vs Bridges vs Dentures
         </h2>
-        <p className="text-xs sm:text-sm text-[#4E4636] mt-1 max-w-2xl leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#4E4636] mt-1 w-full leading-relaxed">
           Evaluate how each option impacts adjacent teeth, long-term bone volume, bite power, and 20-year durability.
         </p>
       </div>
